@@ -3,8 +3,6 @@ package com.vnet.samples.reactor;
 import com.vnet.common.Utils;
 import com.vnet.common.VException;
 import lombok.extern.slf4j.Slf4j;
-import org.reactivestreams.Subscription;
-import reactor.core.publisher.BaseSubscriber;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Scheduler;
@@ -12,7 +10,6 @@ import reactor.core.scheduler.Schedulers;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 import static com.vnet.common.Utils.toInteger;
 
@@ -40,9 +37,7 @@ public class SampleApp {
 
     private void logUsage(final int expectedTotal) {
         final Map<String, Integer> map = new HashMap<>();
-        usage.forEach((k, v) -> {
-            map.merge("total", v, Integer::sum);
-        });
+        usage.forEach((k, v) -> map.merge("total", v, Integer::sum));
 
         final int total = map.get("total");
         if (total != expectedTotal) {
@@ -53,8 +48,9 @@ public class SampleApp {
         usage.forEach((k, v) -> {
             final String pct = String.format("%1$6s", Utils.percentage(v, total, 2));
             final String name = String.format("%1$-12s", k);
-            log.info("Usage {} : {} ({})", name, pct, v);
+            log.info("Usage {} : {} {}", name, pct, String.format("%1$8d", v));
         });
+        log.info("Total {}", String.format("%1$30d", total));
     }
 
     public void fluxOne(final int count, final int concurrency) {

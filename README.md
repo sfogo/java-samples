@@ -6,14 +6,19 @@ e.g. First argument in flux size, 2nd argument is concurrency.
 ```
 Output prints usage by thread. For instance:
 ```
-13:48:47.751 [SampleApp-2] INFO com.vnet.samples.reactor.SampleApp - Usage SampleApp-9  : 16.34% (81622)
-13:48:47.752 [SampleApp-2] INFO com.vnet.samples.reactor.SampleApp - Usage SampleApp-8  : 14.23% (71071)
-13:48:47.752 [SampleApp-2] INFO com.vnet.samples.reactor.SampleApp - Usage SampleApp-7  : 16.45% (82183)
-13:48:47.752 [SampleApp-2] INFO com.vnet.samples.reactor.SampleApp - Usage SampleApp-6  :  8.03% (40132)
-13:48:47.753 [SampleApp-2] INFO com.vnet.samples.reactor.SampleApp - Usage SampleApp-10 :  3.10% (15508)
-13:48:47.753 [SampleApp-2] INFO com.vnet.samples.reactor.SampleApp - Usage SampleApp-5  :  4.38% (21855)
-13:48:47.754 [SampleApp-2] INFO com.vnet.samples.reactor.SampleApp - Usage SampleApp-4  : 10.42% (52026)
-13:48:47.754 [SampleApp-2] INFO com.vnet.samples.reactor.SampleApp - Usage SampleApp-3  :  8.26% (41277)
-13:48:47.755 [SampleApp-2] INFO com.vnet.samples.reactor.SampleApp - Usage SampleApp-2  : 18.78% (93825)
-13:48:47.755 [SampleApp-2] INFO com.vnet.samples.reactor.SampleApp - Done
+14:04:16.552 [SampleApp-6] INFO com.vnet.samples.reactor.SampleApp - Usage SampleApp-9  : 11.46%    57218
+14:04:16.552 [SampleApp-6] INFO com.vnet.samples.reactor.SampleApp - Usage SampleApp-8  :  6.97%    34817
+14:04:16.553 [SampleApp-6] INFO com.vnet.samples.reactor.SampleApp - Usage SampleApp-7  : 12.76%    63716
+14:04:16.553 [SampleApp-6] INFO com.vnet.samples.reactor.SampleApp - Usage SampleApp-6  : 11.73%    58586
+14:04:16.554 [SampleApp-6] INFO com.vnet.samples.reactor.SampleApp - Usage SampleApp-11 :  0.12%      582
+14:04:16.554 [SampleApp-6] INFO com.vnet.samples.reactor.SampleApp - Usage SampleApp-10 :  5.73%    28642
+14:04:16.554 [SampleApp-6] INFO com.vnet.samples.reactor.SampleApp - Usage SampleApp-5  : 21.77%   108751
+14:04:16.555 [SampleApp-6] INFO com.vnet.samples.reactor.SampleApp - Usage SampleApp-4  :  3.94%    19680
+14:04:16.555 [SampleApp-6] INFO com.vnet.samples.reactor.SampleApp - Usage SampleApp-3  : 12.80%    63943
+14:04:16.555 [SampleApp-6] INFO com.vnet.samples.reactor.SampleApp - Usage SampleApp-2  : 12.73%    63564
+14:04:16.555 [SampleApp-6] INFO com.vnet.samples.reactor.SampleApp - Total                         499499
+14:04:16.555 [SampleApp-6] INFO com.vnet.samples.reactor.SampleApp - Done
+
+BUILD SUCCESSFUL in 2m 0s
+4 actionable tasks: 1 executed, 3 up-to-date
 ```
