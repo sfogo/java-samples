@@ -1,0 +1,8 @@
+dependencies {
+    implementation('com.fasterxml.jackson.core:jackson-databind')
+}
+
+test {
+    testLogging.showStandardStreams = true
+    useTestNG()
+}
