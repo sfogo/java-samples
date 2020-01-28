@@ -51,7 +51,9 @@ public class SampleApp {
         }
 
         usage.forEach((k, v) -> {
-            log.info("Usage {} : {} ({})", k, Utils.percentage(v, total, 2), v);
+            final String pct = String.format("%1$6s", Utils.percentage(v, total, 2));
+            final String name = String.format("%1$-12s", k);
+            log.info("Usage {} : {} ({})", name, pct, v);
         });
     }
 
