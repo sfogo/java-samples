@@ -2,7 +2,7 @@ package com.vnet.common;
 
 public class Utils {
     private Utils() {
-        // hit default constructor
+        // hide default constructor
     }
 
     public static Integer toInteger(final Object object) {
