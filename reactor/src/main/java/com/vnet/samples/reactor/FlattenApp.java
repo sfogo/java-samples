@@ -31,7 +31,7 @@ public class FlattenApp {
         usage.merge(name, 1, Integer::sum);
     }
 
-    private void logUsage(final int expectedTotal) {
+    private void uponCompletion(final int expectedTotal) {
         final Map<String, Integer> map = new HashMap<>();
         usage.forEach((k, v) -> map.merge("total", v, Integer::sum));
 
@@ -75,7 +75,7 @@ public class FlattenApp {
                 .subscribe(
                         this::updateUsage,
                         t -> log.error("ERROR:{}", t.getMessage()),
-                        () -> logUsage(Sums.firstNSquares(count)));
+                        () -> uponCompletion(Sums.firstNSquares(count)));
     }
 
     public static void main(final String... args) {
