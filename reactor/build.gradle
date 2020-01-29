@@ -9,6 +9,11 @@ task runSampleApp(type: JavaExec) {
     main = 'com.vnet.samples.reactor.SampleApp'
 }
 
+task runArticleApp(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'com.vnet.samples.reactor.ArticleApp'
+}
+
 test {
     testLogging.showStandardStreams = true
     useTestNG()
