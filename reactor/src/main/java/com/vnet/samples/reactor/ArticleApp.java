@@ -1,5 +1,6 @@
 package com.vnet.samples.reactor;
 
+import com.vnet.common.Utils;
 import com.vnet.common.VException;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -85,7 +86,15 @@ public class ArticleApp {
     }
 
     private void trace(final List<LetterCount> list) {
-        list.forEach(c -> log.info("{} : {}", c.letter, c.value));
+        int total = 0;
+        for (final LetterCount count : list) {
+            total += count.value;
+        }
+        final int den = total;
+        list.forEach(c -> log.info("{} {} {}",
+                c.letter,
+                String.format("%1$6s", Utils.percentage(c.value, den, 1)),
+                String.format("%1$5d", c.value)));
     }
 
     public void analyzeArticle(final String country) {
