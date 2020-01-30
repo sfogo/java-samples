@@ -16,4 +16,19 @@ public class NorthEastPathsTest {
     public void testPath22() {
         Assert.assertEquals(paths.count(2, 2), Sets.C(4, 2));
     }
+
+    @Test
+    public void testTwoWays() {
+        Assert.assertEquals(paths.count(4,4), paths.count2(4, 4));
+    }
+
+    @Test
+    public void testTwoWays40() {
+        Assert.assertEquals(paths.count(4,0), paths.count2(4, 0));
+    }
+
+    @Test
+    public void testPath40() {
+        Assert.assertEquals(paths.count(4, 0), 1);
+    }
 }
