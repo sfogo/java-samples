@@ -45,17 +45,16 @@ public class NEPaths {
         }
 
         if (x < width) {
-            if (currentPath.size() == 1 + width + height) {
-                // If current path size is 1 + width + height, it means that top right corner
-                // had just been reached : we need to keep the first x + y + 1 points
-                // that recursion has already visited.
-                currentPath = new LinkedList<>(currentPath.subList(0, x + y + 1));
-            }
             getPaths(x + 1, y, width, height);
         }
 
         if (y < height) {
             if (currentPath.size() == 1 + width + height) {
+                // If current path size is 1 + width + height, it means that top right corner
+                // had just been reached : we need to keep the first x + y + 1 points
+                // that recursion has already visited.
+                // NOTE: no need to do that check above for x < width because only when you go up (change of direction)
+                // do you need to retain the points recursively traversed so far.
                 currentPath = new LinkedList<>(currentPath.subList(0, x + y + 1));
             }
             getPaths(x, y + 1, width, height);
