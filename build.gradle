@@ -1,5 +1,6 @@
 plugins {
     id 'org.springframework.boot' version '2.1.9.RELEASE'
+    id 'com.heroku.sdk.heroku-gradle' version '1.0.4'
 }
 
 subprojects {
