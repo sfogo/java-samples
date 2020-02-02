@@ -3,3 +3,5 @@ rootProject.name = 'java-samples'
 include "reactor"
 include "problems"
 include "common"
+
+include "apps:things"
