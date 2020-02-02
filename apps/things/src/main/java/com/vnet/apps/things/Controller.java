@@ -34,6 +34,6 @@ public class Controller {
     @GetMapping(value = "/paths", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public Object paths(final PathsRequest request) {
-        return paths.get(request.getW(), request.getW());
+        return paths.get(request.getW(), request.getH());
     }
 }
