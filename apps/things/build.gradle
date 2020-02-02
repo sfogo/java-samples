@@ -1,5 +1,11 @@
 apply from: "../apps.gradle"
 
+heroku {
+    appName = "northeastpaths"
+    includes = ["apps/things/build/libs/things-0.0.1-SNAPSHOT.jar"]
+    includeBuildDir = false
+}
+
 dependencies {
     implementation project(":common")
     implementation 'org.springframework.boot:spring-boot-starter-web:2.1.9.RELEASE'
