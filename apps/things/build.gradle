@@ -1,0 +1,7 @@
+apply from: "../apps.gradle"
+
+dependencies {
+    implementation project(":common")
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.1.9.RELEASE'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.1.9.RELEASE'
+}
