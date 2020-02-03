@@ -3,6 +3,7 @@ package com.vnet.apps.things;
 import com.vnet.apps.things.paths.NorthEastPaths;
 import com.vnet.apps.things.paths.PathsRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,8 +20,19 @@ import java.util.Map;
 @CrossOrigin
 @RequestMapping("/things")
 public class Controller {
+    @Value("${app.message}")
+    private String message;
+
     @Autowired
     private NorthEastPaths paths;
+
+    @GetMapping(value = "/home")
+    @ResponseStatus(HttpStatus.OK)
+    public Map<String, Object> home() {
+        return new HashMap<String, Object>() {{
+            put("message", message);
+        }};
+    }
 
     @GetMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.OK)
