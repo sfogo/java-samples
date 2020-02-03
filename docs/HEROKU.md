@@ -1,4 +1,5 @@
 # Heroku Notes
+
 ## Install Heroku Ubuntu
 ```
 sudo snap install --classic heroku
@@ -7,7 +8,7 @@ sudo snap install --classic heroku
 ## Create named app
 heroku create app137
 
-# Deploy
+## Deploy
 Did not work with gradle plugin
 ```
 ./gradlew apps:things:deployHeroku
