@@ -4,7 +4,7 @@
 sudo snap install --classic heroku
 ```
 
-# Create named app
+## Create named app
 heroku create app137
 
 # Deploy
@@ -18,7 +18,7 @@ Did not work with gradle plugin
 heroku plugins:install java
 ```
 
-# Deploy with java plugin
+## Deploy with java plugin
 ```
 heroku deploy:jar apps/things/build/libs/things-0.0.1-SNAPSHOT.jar --app app137
 ```
