@@ -119,15 +119,18 @@
         }
 
         function play(w,h) {
+            showWheel();
             $.ajax({
                 type: 'GET',
                 url: makePathsURL(w,h),
                 success: function(data,status,xhr) {
                     PATHS = data;
+                    hideWheel();
                     console.log('Found:'+PATHS.length);
                     playPaths();
                 },
                 error: function(xhr,status,error) {
+                    hideWheel();
                     console.log(status);
                 }
             });
@@ -189,6 +192,14 @@
             initGrid();
             play(GRID.w, GRID.h);
         }
+
+        function showWheel() {
+            $('#wheel').removeClass('hidden');
+        }
+
+        function hideWheel() {
+            $('#wheel').addClass('hidden');
+        }
     </script>
 </div>
 
@@ -202,6 +213,7 @@
     <span>Height</span>
     <select id="selectHeight"></select>
     <span>Total</span>
+    <span id="wheel" class="wheel hidden"></span>
     <span class="oran ex00" id="NB-PATHS"></span>
     <span>Current</span>
     <span class="blue" id="PATH-COUNTER">

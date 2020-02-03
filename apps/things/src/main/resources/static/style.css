@@ -12,3 +12,6 @@
 .oran {color:#f0ad4e}
 
 .tm20 {margin-top:20px;}
+
+.hidden   {display:none;}
+span.wheel::after {content:url('images/wheel.gif');}
