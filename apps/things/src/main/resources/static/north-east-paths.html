@@ -2,6 +2,7 @@
 <head>
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/two.js"></script>
+    <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 <body>
 <div class="scripts">
@@ -26,7 +27,6 @@
         };
 
         $(function() {
-            $('#top').append("<div>Hi!</div>");
             $('#logs').children().remove();
 
             $("#resume").click(function(event) {
@@ -35,12 +35,18 @@
             });
 
             $("#pause").click(function(event) {
-                // alert(event.target.id);
                 GRID.two.pause();
             });
 
+            $("#reset").click(function(event) {
+                resetGrid();
+            });
+
+            updatePathCounter(0);
             initGrid();
-            getPaths(GRID.w, GRID.h);
+            initDimension('selectWidth',GRID.w);
+            initDimension('selectHeight',GRID.h);
+            play(GRID.w, GRID.h);
         });
 
         function initGrid() {
@@ -112,7 +118,7 @@
             return u;
         }
 
-        function getPaths(w,h) {
+        function play(w,h) {
             $.ajax({
                 type: 'GET',
                 url: makePathsURL(w,h),
@@ -129,6 +135,7 @@
 
         function playPaths() {
             var nbPaths = PATHS.length;
+            updateNbPaths(nbPaths);
             var pathLength = PATHS[0].length;
             var p0 = PATHS[0][0];
             var dot0 = makeGridDot(p0.x, p0.y);
@@ -143,18 +150,64 @@
                     v = (1 + v) % pathLength;
                     if (v == 0) {
                         u = (1 + u) % nbPaths;
+                        updatePathCounter(u == 0 ? nbPaths : u);
                     }
                 }
             }).play();
         }
+
+        function updatePathCounter(n) {
+            $('#PATH-COUNTER').text(n);
+        }
+
+        function updateNbPaths(n) {
+            $('#NB-PATHS').text(n);
+        }
+
+        function initDimension(selectId,def) {
+            var max = 10;
+            if (def < 0 || def > max) {
+                def = 3;
+            }
+            for (var i=1; i<=max; i++) {
+                if (i == def) {
+                    $('#'+selectId).append('<option selected="true" value="' + i + '">' + i + '</option>');
+                } else {
+                    $('#'+selectId).append('<option value="' + i + '">' + i + '</option>');
+                }
+            }
+        }
+
+        function resetGrid() {
+            var w = $('#selectWidth').val();
+            var h = $('#selectHeight').val();
+            GRID.two.pause();
+            updatePathCounter(0);
+            GRID.w = w;
+            GRID.h = h;
+            $('#draw-grid').children().remove();
+            initGrid();
+            play(GRID.w, GRID.h);
+        }
     </script>
 </div>
-<div id="top"></div>
-<div id="navigation">
+
+<div class="mg04" id="navigation">
+    <span>North East Paths</span>
     <button id="resume">Resume</button>
     <button id="pause">Pause</button>
+    <button id="reset">Reset</button>
+    <span>Width</span>
+    <select id="selectWidth"></select>
+    <span>Height</span>
+    <select id="selectHeight"></select>
+    <span>Total</span>
+    <span class="oran ex00" id="NB-PATHS"></span>
+    <span>Current</span>
+    <span class="blue" id="PATH-COUNTER">
 </div>
-<div id="draw-grid" style="border-style:solid;border-width:1px;border-color:#cccccc;"></div>
+
+<div class="one-cell aBox tm20" id="draw-grid"></div>
 <div id="logs"></div>
 </body>
 </html>
