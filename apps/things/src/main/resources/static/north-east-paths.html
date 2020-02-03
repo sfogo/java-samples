@@ -22,6 +22,7 @@
             two: null,
             step: 40,
             margin: 10,
+            speed: 8,
             w: 5,
             h: 4
         };
@@ -86,7 +87,7 @@
         function makeGridDot(x,y) {
             var p = convert(x,y);
             var dot = GRID.two.makeCircle(p.x, p.y, 8);
-            dot.fill = '#FF8000';
+            dot.fill = '#3399ff';
             return dot;
         }
 
@@ -146,7 +147,7 @@
             var u = 0;
             var v = 1;
             GRID.two.bind('update', function(frameCount) {
-                if (frameCount % 12 == 0) {
+                if (frameCount % GRID.speed == 0) {
                     var next = PATHS[u][v];
                     var p = convertPoint(next);
                     dot0.translation.set(p.x, p.y);
@@ -174,7 +175,7 @@
             }
             for (var i=1; i<=max; i++) {
                 if (i == def) {
-                    $('#'+selectId).append('<option selected="true" value="' + i + '">' + i + '</option>');
+                    $('#'+selectId).append('<option selected="selected" value="' + i + '">' + i + '</option>');
                 } else {
                     $('#'+selectId).append('<option value="' + i + '">' + i + '</option>');
                 }
@@ -184,10 +185,12 @@
         function resetGrid() {
             var w = $('#selectWidth').val();
             var h = $('#selectHeight').val();
+            var s = $('#selectSpeed').val();
             GRID.two.pause();
             updatePathCounter(0);
             GRID.w = w;
             GRID.h = h;
+            GRID.speed = s;
             $('#draw-grid').children().remove();
             initGrid();
             play(GRID.w, GRID.h);
@@ -212,6 +215,12 @@
     <select id="selectWidth"></select>
     <span>Height</span>
     <select id="selectHeight"></select>
+    <span>Speed</span>
+    <select id="selectSpeed">
+        <option value="8" selected="selected">High</option>
+        <option value="12">Medium</option>
+        <option value="20">Low</option>
+    </select>
     <span>Total</span>
     <span id="wheel" class="wheel hidden"></span>
     <span class="oran ex00" id="NB-PATHS"></span>
