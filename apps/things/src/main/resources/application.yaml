@@ -3,14 +3,3 @@ server:
 
 app:
   message: Welcome to Things App on Heroku
-
----
-spring:
-  profiles:
-    active: local-development
-
-server:
-  port: 8080
-
-app:
-  message: Welcome to Things App
