@@ -69,6 +69,8 @@
                 error: function(xhr,status,error) {
                     hideWheel(p);
                     console.log(status);
+                    $('#' + p.getSpanId()).addClass('bred');
+                    $('#' + p.getSpanId()).text('error:'+status);
                 }
             });
         }
