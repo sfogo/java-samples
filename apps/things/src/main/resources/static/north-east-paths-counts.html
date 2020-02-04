@@ -1,0 +1,103 @@
+<html>
+<head>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+<body>
+<div class="scripts">
+    <script>
+        class Point {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+            }
+            toString() {
+                return '(' + this.x + ',' + this.y + ')';
+            }
+            getSpanId() {
+                return 'span_' + this.x + '_' + this.y;
+            }
+            getWheelId() {
+                return 'wheel_' + this.x + '_' + this.y;
+            }
+        }
+
+        var TABLE = {
+            w: 15,
+            h: 15
+        };
+
+        $(function() {
+            $('#logs').children().remove();
+            initTable();
+            fillOutTable();
+        });
+
+        function initTable() {
+            var t = '<table class="tb90">';
+            for (var row=0; row<TABLE.h; row++) {
+                t += '<tr>';
+                for (var col=0; col<TABLE.w; col++) {
+                    var p = new Point(1+col,TABLE.h - row);
+                    t += '<td class="aBox">';
+                    t +=  ('<span class="wheel hidden" id="' + p.getWheelId() + '">&nbsp;</span>');
+                    t +=  ('<span id="' + p.getSpanId() + '">&nbsp;</span>');
+                    t += '</td>';
+                }
+                t += '</tr>';
+            }
+            t += '</table>';
+            $('#draw-grid').append(t);
+        }
+
+        function makeCountsURL(p) {
+            var u = '/things/counts/';
+            u += ('?w=' + p.x);
+            u += ('&h=' + p.y);
+            return u;
+        }
+
+        function updateCell(p) {
+            showWheel(p);
+            $.ajax({
+                type: 'GET',
+                url: makeCountsURL(p),
+                success: function(data,status,xhr) {
+                    hideWheel(p);
+                    $('#' + p.getSpanId()).text(data.count);
+                },
+                error: function(xhr,status,error) {
+                    hideWheel(p);
+                    console.log(status);
+                }
+            });
+        }
+
+        function fillOutTable() {
+            for (var row=0; row<TABLE.h; row++) {
+                for (var col=0; col<TABLE.w; col++) {
+                    var p = new Point(1+col,TABLE.h - row);
+                    updateCell(p);
+                }
+            }
+        }
+
+        function showWheel(p) {
+            $('#' + p.getWheelId()).removeClass('hidden');
+        }
+
+        function hideWheel(p) {
+            $('#' + p.getWheelId()).addClass('hidden');
+        }
+
+        function log(s) {
+            $('#logs').append('<div>' + s + '</div>');
+        }
+
+    </script>
+</div>
+
+<div class="one-cell aBox tm20" id="draw-grid"></div>
+<div id="logs"></div>
+</body>
+</html>
