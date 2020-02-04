@@ -15,3 +15,14 @@
 
 .hidden   {display:none;}
 span.wheel::after {content:url('images/wheel.gif');}
+
+.pad0 {padding:0px;}
+.pad1 {padding:1px;}
+.pad2 {padding:2px;}
+.pad4 {padding:4px;}
+
+.tb90 {
+border-collapse:collapse;
+align:center;
+width:90%;
+}

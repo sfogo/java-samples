@@ -2,18 +2,17 @@ package com.vnet.apps.things.paths;
 
 import lombok.Data;
 import com.vnet.common.VException;
-import org.springframework.stereotype.Component;
 
 import java.util.LinkedList;
 import java.util.List;
 
-@Component
 public class NorthEastPaths {
 
     @Data
     class Point {
         final int x;
         final int y;
+
         public String toString() {
             return String.format("(%d,%d)", x, y);
         }
@@ -21,6 +20,7 @@ public class NorthEastPaths {
 
     private List<List<Point>> paths;
     private List<Point> currentPath;
+    private int count = 0;
 
     public List<List<Point>> get(final int width, final int height) {
         if (width < 0) {
@@ -60,6 +60,27 @@ public class NorthEastPaths {
                 currentPath = new LinkedList<>(currentPath.subList(0, x + y + 1));
             }
             paths(x, y + 1, width, height);
+        }
+    }
+
+    public int count(final int width, final int height) {
+        count = 0;
+        traverse(0, 0, width, height);
+        return count;
+    }
+
+    private void traverse(final int x, final int y, final int width, final int height) {
+        if (x == width && y == height) {
+            count++;
+            return;
+        }
+
+        if (x < width) {
+            traverse(x + 1, y, width, height);
+        }
+
+        if (y < height) {
+            traverse(x, y + 1, width, height);
         }
     }
 }
