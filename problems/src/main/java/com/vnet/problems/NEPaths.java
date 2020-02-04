@@ -9,7 +9,7 @@ import java.util.List;
 public class NEPaths {
 
     @Data
-    class Point {
+    static class Point {
         final int x;
         final int y;
         public String toString() {
@@ -17,8 +17,41 @@ public class NEPaths {
         }
     }
 
-    private List<List<Point>> paths;
-    private List<Point> currentPath;
+    private static class PathContext {
+        private final List<List<Point>> paths = new LinkedList<>();
+        private List<Point> currentPath = new LinkedList<>();
+        private List<List<Point>> getPaths(final int width, final int height) {
+            traverse(0, 0, width, height);
+            return paths;
+        }
+
+        private void traverse(final int x, final int y, final int width, final int height) {
+            currentPath.add(new Point(x, y));
+
+            if (x == width && y == height) {
+                // Copy current path to result paths :
+                // Each resulting path must contain exactly 1 + x + y points
+                paths.add(new LinkedList<>(currentPath));
+                return;
+            }
+
+            if (x < width) {
+                traverse(x + 1, y, width, height);
+            }
+
+            if (y < height) {
+                if (currentPath.size() == 1 + width + height) {
+                    // If current path size is 1 + width + height, it means that top right corner
+                    // had just been reached : we need to keep the first x + y + 1 points
+                    // that recursion has already visited.
+                    // NOTE: no need to do that check above for x < width because only when you go up (change of direction)
+                    // do you need to retain the points recursively traversed so far.
+                    currentPath = new LinkedList<>(currentPath.subList(0, x + y + 1));
+                }
+                traverse(x, y + 1, width, height);
+            }
+        }
+    }
 
     public List<List<Point>> getPaths(final int width, final int height) {
         if (width < 0) {
@@ -28,36 +61,7 @@ public class NEPaths {
             throw new VException("Invalid height");
         }
 
-        paths = new LinkedList<>();
-        currentPath = new LinkedList<>();
-        getPaths(0, 0, width, height);
-        return paths;
+        return new PathContext().getPaths(width, height);
     }
 
-    private void getPaths(final int x, final int y, final int width, final int height) {
-        currentPath.add(new Point(x, y));
-
-        if (x == width && y == height) {
-            // Copy current path to result paths :
-            // Each resulting path must contain exactly 1 + x + y points
-            paths.add(new LinkedList<>(currentPath));
-            return;
-        }
-
-        if (x < width) {
-            getPaths(x + 1, y, width, height);
-        }
-
-        if (y < height) {
-            if (currentPath.size() == 1 + width + height) {
-                // If current path size is 1 + width + height, it means that top right corner
-                // had just been reached : we need to keep the first x + y + 1 points
-                // that recursion has already visited.
-                // NOTE: no need to do that check above for x < width because only when you go up (change of direction)
-                // do you need to retain the points recursively traversed so far.
-                currentPath = new LinkedList<>(currentPath.subList(0, x + y + 1));
-            }
-            getPaths(x, y + 1, width, height);
-        }
-    }
 }
