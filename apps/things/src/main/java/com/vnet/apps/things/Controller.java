@@ -2,6 +2,7 @@ package com.vnet.apps.things;
 
 import com.vnet.apps.things.paths.NorthEastPaths;
 import com.vnet.apps.things.paths.PathsRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,6 +20,9 @@ import java.util.Map;
 @CrossOrigin
 @RequestMapping("/things")
 public class Controller {
+    @Autowired
+    private NorthEastPaths paths;
+
     @Value("${app.message}")
     private String message;
 
@@ -42,14 +46,12 @@ public class Controller {
     @GetMapping(value = "/paths", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public Object paths(final PathsRequest request) {
-        final NorthEastPaths paths = new NorthEastPaths();
         return paths.get(request.getW(), request.getH());
     }
 
     @GetMapping(value = "/counts", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public Object count(final PathsRequest request) {
-        final NorthEastPaths paths = new NorthEastPaths();
         return new HashMap<String, Object>() {{
             put("width", request.getW());
             put("height", request.getH());
