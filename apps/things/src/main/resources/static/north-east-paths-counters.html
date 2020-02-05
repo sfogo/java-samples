@@ -18,14 +18,34 @@
             }
         }
 
+        class Counter {
+            constructor(value, text) {
+                this.value = value;
+                this.text = text;
+            }
+        }
+
+
         var PATHS = [];
         var GRID = {
             two: null,
-            step: 40,
-            margin: 10,
+            step: 80,
+            margin: 40,
             speed: 8,
-            w: 10,
-            h: 4
+            w: 7,
+            h: 5,
+            counters: [],
+            color: '#cccccc',
+            pathCount: 0,
+            pathLength: 0,
+            visits: 0
+        };
+
+        var textStyles = {
+             family: 'proxima-nova, sans-serif',
+             size: 20,
+             weight: 700,
+             fill: 'blue'
         };
 
         $(function() {
@@ -62,17 +82,39 @@
             for (var i=0; i < 1 + GRID.w; i++) {
                 var p1 = convert(i, 0);
                 var p2 = convert(i, GRID.h);
-                GRID.two.makeLine(p1.x, p1.y, p2.x, p2.y);
+                var line = GRID.two.makeLine(p1.x, p1.y, p2.x, p2.y);
+                line.stroke = GRID.color;
             }
 
             // grid horizontal lines
             for (var i=0; i < 1 + GRID.h; i++) {
                 var p1 = convert(0, i);
                 var p2 = convert(GRID.w, i);
-                GRID.two.makeLine(p1.x, p1.y, p2.x, p2.y);
+                var line = GRID.two.makeLine(p1.x, p1.y, p2.x, p2.y);
+                line.stroke = GRID.color;
+            }
+
+            GRID.counters = [];
+            for (var i=0; i < 1 + GRID.w; i++) {
+                var lineCounters = [];
+                for (var j=0; j < 1 + GRID.h; j++) {
+                    lineCounters.push(new Counter(0,null));
+                }
+                GRID.counters.push(lineCounters);
             }
 
             GRID.two.update();
+        }
+
+        function resetCounters() {
+            for (var i=0; i<GRID.counters.length; i++) {
+                var colCounters = GRID.counters[i];
+                for (var j=0; j<colCounters.length; j++) {
+                    var c = colCounters[j];
+                    c.value = 0;
+                    c.text.value = 0;
+                }
+            }
         }
 
         function convert(x,y) {
@@ -87,13 +129,33 @@
 
         function makeGridDot(x,y) {
             var p = convert(x,y);
-            var dot = GRID.two.makeCircle(p.x, p.y, 8);
-            dot.fill = '#3399ff';
+            var dot = GRID.two.makeCircle(p.x, p.y, 16);
+            dot.fill = '#0099ff';
             return dot;
         }
 
         function makeGridDotFromPoint(p) {
             return makeGridDot(p.x,p.y);
+        }
+
+        function getGridCounter(x,y) {
+            var c = GRID.counters[x][y];
+            if (c.text == null) {
+                var p = convert(x,y);
+                // var dot = GRID.two.makeCircle(p.x, p.y, 20);
+                // dot.fill = '#0099ff';
+                var text = GRID.two.makeText(0, p.x, p.y, textStyles);
+                c = new Counter(0,text);
+                c.text = text;
+                GRID.counters[x][y] = c;
+            }
+            return c;
+        }
+
+        function increasePointCounter(p) {
+            var c = getGridCounter(p.x, p.y);
+            c.value = 1 + c.value;
+            c.text.value = c.value;
         }
 
         function logPath(points) {
@@ -128,7 +190,6 @@
                 success: function(data,status,xhr) {
                     PATHS = data;
                     hideWheel();
-                    console.log('Found:'+PATHS.length);
                     playPaths();
                 },
                 error: function(xhr,status,error) {
@@ -139,23 +200,44 @@
         }
 
         function playPaths() {
-            var nbPaths = PATHS.length;
-            updateNbPaths(nbPaths);
-            var pathLength = PATHS[0].length;
+            GRID.pathCount = PATHS.length;
+            updateNbPaths(GRID.pathCount);
+            GRID.pathLength = PATHS[0].length;
+            GRID.visits = GRID.pathCount * GRID.pathLength;
+
+            console.log('Number of paths:' + GRID.pathCount);
+            console.log('Path Length:' + GRID.pathLength);
+            console.log('Visit Total:' + GRID.visits);
+
             var p0 = PATHS[0][0];
+            increasePointCounter(p0);
             var dot0 = makeGridDot(p0.x, p0.y);
             GRID.two.update();
             var u = 0;
             var v = 1;
             GRID.two.bind('update', function(frameCount) {
                 if (frameCount % GRID.speed == 0) {
+                    // --------------
+                    // Next Point
+                    // --------------
+                    var next = PATHS[u][v];
+                    // --------------
+                    // update counter
+                    // --------------
+                    increasePointCounter(next);
+                    // --------------
+                    // move dot
+                    // --------------
                     var next = PATHS[u][v];
                     var p = convertPoint(next);
                     dot0.translation.set(p.x, p.y);
-                    v = (1 + v) % pathLength;
+                    v = (1 + v) % GRID.pathLength;
                     if (v == 0) {
-                        u = (1 + u) % nbPaths;
-                        updatePathCounter(u == 0 ? nbPaths : u);
+                        u = (1 + u) % GRID.pathCount;
+                        updatePathCounter(u == 0 ? GRID.pathCount : u);
+                        if (u == 0) {
+                            resetCounters();
+                        }
                     }
                 }
             }).play();
@@ -207,7 +289,7 @@
     </script>
 </div>
 
-<div class="mg04" id="navigation">
+<div class="mg04 base" id="navigation">
     <span>North East Paths</span>
     <button id="resume">Resume</button>
     <button id="pause">Pause</button>
