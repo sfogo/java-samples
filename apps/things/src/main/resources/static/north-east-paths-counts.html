@@ -23,8 +23,8 @@
         }
 
         var TABLE = {
-            w: 16,
-            h: 16
+            w: 18,
+            h: 18
         };
 
         $(function() {
@@ -69,6 +69,8 @@
                 error: function(xhr,status,error) {
                     hideWheel(p);
                     console.log(status);
+                    $('#' + p.getSpanId()).addClass('bred');
+                    $('#' + p.getSpanId()).text('error:' + xhr.status);
                 }
             });
         }

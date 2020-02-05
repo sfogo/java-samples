@@ -1,12 +1,12 @@
 # North East Paths
-## Next move
+## Recursively
 The rule is that you can only move up or right. Therefore, once at position `(x,y)`, you can only step to:
 - `(x + 1, y)` provided that `x < X`
 - `(x, y + 1)` provided that `y < Y`
 
 Therefore the solution is to explore recursively these transitions, and count one path every time you hit `(X, Y)`.
 
-## Maths
+## No coding required
 - Whichever path you take, it takes `X + Y` steps to go from bottom left to top right.
 - If you have to take a total of `X + Y` steps, there is no other way than:
   - Going up X times

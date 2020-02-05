@@ -23,7 +23,7 @@ public class NorthEastPaths {
     private static class PathContext {
         private final List<List<Point>> paths = new LinkedList<>();
         private List<Point> currentPath = new LinkedList<>();
-        private int count = 0;
+        private long count = 0;
 
         private void traverseForCount(final int x, final int y, final int width, final int height) {
             if (x == width && y == height) {
@@ -76,7 +76,7 @@ public class NorthEastPaths {
             }
         }
 
-        private int count(final int width, final int height) {
+        private long count(final int width, final int height) {
             validate(width, height);
             count = 0;
             traverseForCount(0, 0, width, height);
@@ -95,7 +95,7 @@ public class NorthEastPaths {
     }
 
 
-    public int count(final int width, final int height) {
+    public long count(final int width, final int height) {
         return new PathContext().count(width, height);
     }
 }
