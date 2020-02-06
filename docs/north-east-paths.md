@@ -1,6 +1,7 @@
 # North East Paths
 ## How many paths from bottom left to top right?
 **Provided that you only move up or right**...
+
 <img src="https://user-images.githubusercontent.com/13286393/73980710-a61f4800-48e5-11ea-9a34-5d42fc1b0bdd.jpg" width="60%;">
 
 ## Recursively
