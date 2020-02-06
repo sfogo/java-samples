@@ -26,7 +26,7 @@ C(X + Y, X) = C (X + Y, Y) = (X + Y)! / (X! * Y!)
 - If the grid is 3x3, C(6,3) = 20
 - If the grid is 5x4, C(9,5) = C(9,4) = 126, same result if the grid is 4x5.
 
-## How many paths visit a give point in the grid?
+## How many paths visit a given point in the grid?
 If P is one grid point, the number of paths that visit P is:
 - the number of paths to go from bottom left to P
 - **multiplied** by the number of paths that go from P to top right.
