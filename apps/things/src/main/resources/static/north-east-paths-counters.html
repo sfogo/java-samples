@@ -107,6 +107,7 @@
         }
 
         function resetCounters() {
+            console.log('resetCounters');
             for (var i=0; i<GRID.counters.length; i++) {
                 var colCounters = GRID.counters[i];
                 for (var j=0; j<colCounters.length; j++) {
@@ -142,8 +143,6 @@
             var c = GRID.counters[x][y];
             if (c.text == null) {
                 var p = convert(x,y);
-                // var dot = GRID.two.makeCircle(p.x, p.y, 20);
-                // dot.fill = '#0099ff';
                 var text = GRID.two.makeText(0, p.x, p.y, textStyles);
                 c = new Counter(0,text);
                 c.text = text;
@@ -266,6 +265,7 @@
         }
 
         function resetGrid() {
+            console.log('resetGrid');
             var w = $('#selectWidth').val();
             var h = $('#selectHeight').val();
             var s = $('#selectSpeed').val();
