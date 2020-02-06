@@ -1,7 +1,7 @@
 # North East Paths
 ## How many paths from bottom left to top right?
 **Provided that you only move up or right**...
-![IMG_2175](https://user-images.githubusercontent.com/13286393/73980710-a61f4800-48e5-11ea-9a34-5d42fc1b0bdd.jpg)
+<img src="https://user-images.githubusercontent.com/13286393/73980710-a61f4800-48e5-11ea-9a34-5d42fc1b0bdd.jpg" style="max-width:60%;">
 
 ## Recursively
 The rule is that you can only move up or right. Therefore, once at position `(x,y)`, you can only step to:
