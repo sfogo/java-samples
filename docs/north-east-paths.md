@@ -40,5 +40,6 @@ Example with a 5x4 grid. The number of paths that visit (4,2) is 45:
 - The number of paths from bottom left to (4,2) is C(6,2) = C(6,4) = 15
 - The number of paths that go from (4,2) to top right is the same as a (1x2) grid, which is 3
 - Total is then 45 
-  ![grid5x4](https://user-images.githubusercontent.com/13286393/73970838-b7ab2480-48d2-11ea-99c9-1bc15667eedb.png)
+
+![grid5x4](https://user-images.githubusercontent.com/13286393/73970838-b7ab2480-48d2-11ea-99c9-1bc15667eedb.png)
 
