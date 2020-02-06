@@ -32,13 +32,14 @@
             step: 80,
             margin: 40,
             speed: 8,
-            w: 7,
-            h: 5,
+            w: 4,
+            h: 3,
             counters: [],
             color: '#cccccc',
             pathCount: 0,
             pathLength: 0,
-            visits: 0
+            visits: 0,
+            pause: 24
         };
 
         var textStyles = {
@@ -112,10 +113,17 @@
                 var colCounters = GRID.counters[i];
                 for (var j=0; j<colCounters.length; j++) {
                     var c = colCounters[j];
-                    c.value = 0;
-                    c.text.value = 0;
+                    // This should not happen and
+                    // I do not understand why...
+                    if (c != null && c.text != null) {
+                        c.value = 0;
+                        c.text.value = 0;
+                    } else {
+                       console.log('ERROR resetting i=' + i + ',j=' + j);
+                    }
                 }
             }
+            console.log(GRID.counters);
         }
 
         function convert(x,y) {
@@ -131,7 +139,7 @@
         function makeGridDot(x,y) {
             var p = convert(x,y);
             var dot = GRID.two.makeCircle(p.x, p.y, 16);
-            dot.fill = '#0099ff';
+            dot.fill = '#ff9933';
             return dot;
         }
 
@@ -214,8 +222,16 @@
             GRID.two.update();
             var u = 0;
             var v = 1;
+            var pause = 0;
             GRID.two.bind('update', function(frameCount) {
                 if (frameCount % GRID.speed == 0) {
+                    if (pause > 0) {
+                        pause--;
+                        if (pause == 0) {
+                            resetCounters();
+                        }
+                        return;
+                    }
                     // --------------
                     // Next Point
                     // --------------
@@ -235,7 +251,7 @@
                         u = (1 + u) % GRID.pathCount;
                         updatePathCounter(u == 0 ? GRID.pathCount : u);
                         if (u == 0) {
-                            resetCounters();
+                            pause = GRID.pause;
                         }
                     }
                 }
