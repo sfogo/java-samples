@@ -1,4 +1,9 @@
 # North East Paths
+## How many paths from bottom left to top right?
+**Provided that you only move up or right**...
+
+<img src="https://user-images.githubusercontent.com/13286393/73980710-a61f4800-48e5-11ea-9a34-5d42fc1b0bdd.jpg" width="40%;">
+
 ## Recursively
 The rule is that you can only move up or right. Therefore, once at position `(x,y)`, you can only step to:
 - `(x + 1, y)` provided that `x < X`
@@ -6,7 +11,7 @@ The rule is that you can only move up or right. Therefore, once at position `(x,
 
 Therefore the solution is to explore recursively these transitions, and count one path every time you hit `(X, Y)`.
 
-## No coding required
+## Maths only
 - Whichever path you take, it takes `X + Y` steps to go from bottom left to top right.
 - If you have to take a total of `X + Y` steps, there is no other way than:
   - Going up X times
@@ -34,5 +39,7 @@ If P is one grid point, the number of paths that visit P is:
 Example with a 5x4 grid. The number of paths that visit (4,2) is 45:
 - The number of paths from bottom left to (4,2) is C(6,2) = C(6,4) = 15
 - The number of paths that go from (4,2) to top right is the same as a (1x2) grid, which is 3
-- Total is then 45
+- Total is then 45 
+
 ![grid5x4](https://user-images.githubusercontent.com/13286393/73970838-b7ab2480-48d2-11ea-99c9-1bc15667eedb.png)
+
