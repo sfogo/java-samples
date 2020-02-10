@@ -24,6 +24,7 @@ This is known as [Kadane's](https://en.wikipedia.org/wiki/Maximum_subarray_probl
 - Let's call `M` the overall LCS
 - Let's call `m` the LCS that finishes at position `i - 1` 
 <img src="https://user-images.githubusercontent.com/13286393/74181415-23a0cc00-4bf6-11ea-8369-b1a311fefa34.jpg" width="50%;">
+
 - Traversing the list:
   - Let's call n the number being currently examined at position `i`
   - The local LCS for index `i` is the maximum of the two numbers `n` and `n + m` : update `m` with this maximum.
