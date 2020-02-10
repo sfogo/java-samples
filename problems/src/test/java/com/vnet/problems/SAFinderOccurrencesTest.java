@@ -1,5 +1,6 @@
 package com.vnet.problems;
 
+import com.vnet.common.VException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -37,6 +38,16 @@ public class SAFinderOccurrencesTest {
         Assert.assertEquals(finder.findFirstOccurrence(11, values), 4);
     }
 
+    @Test(expectedExceptions = VException.class)
+    public void testFONotFound() {
+        finder.findFirstOccurrence(137, values);
+    }
+
+    @Test(expectedExceptions = VException.class)
+    public void testLONotFound() {
+        finder.findLastOccurrence(137, values);
+    }
+
     @Test
     public void findLastOccurrence() {
         Assert.assertEquals(finder.findLastOccurrence(11, values), 15);
@@ -47,6 +58,14 @@ public class SAFinderOccurrencesTest {
         final ArrayRange range = finder.findOccurrences(11, values);
         Assert.assertEquals(range.getStart(), 4);
         Assert.assertEquals(range.getEnd(), 15);
+    }
+
+    @Test
+    public void findOccurrencesSame() {
+        final int[] sameValues = new int[] {7, 7, 7, 7, 7};
+        final ArrayRange range = finder.findOccurrences(7, sameValues);
+        Assert.assertEquals(range.getStart(), 0);
+        Assert.assertEquals(range.getEnd(), sameValues.length - 1);
     }
 }
 
