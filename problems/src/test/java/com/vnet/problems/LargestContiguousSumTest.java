@@ -37,4 +37,35 @@ public class LargestContiguousSumTest {
         Assert.assertEquals(lcs.get(sampleAll), 6);
     }
 
+    @Test
+    public void testWI1() {
+        final LargestContiguousSum.Result result = lcs.getWithIndices(new int[] {7});
+        Assert.assertEquals(result.getMax(), 7);
+        Assert.assertEquals(result.getStart(), 0);
+        Assert.assertEquals(result.getEnd(), 0);
+    }
+
+    @Test
+    public void testWI2() {
+        final LargestContiguousSum.Result result = lcs.getWithIndices(new int[] {7,8});
+        Assert.assertEquals(result.getMax(), 15);
+        Assert.assertEquals(result.getStart(), 0);
+        Assert.assertEquals(result.getEnd(), 1);
+    }
+
+    @Test
+    public void testWI3() {
+        final LargestContiguousSum.Result result = lcs.getWithIndices(new int[] {7,-2, 8});
+        Assert.assertEquals(result.getMax(), 13);
+        Assert.assertEquals(result.getStart(), 0);
+        Assert.assertEquals(result.getEnd(), 2);
+    }
+
+    @Test
+    public void testWIS() {
+        final LargestContiguousSum.Result result = lcs.getWithIndices(sample);
+        Assert.assertEquals(result.getMax(), 6);
+        Assert.assertEquals(result.getStart(), 3);
+        Assert.assertEquals(result.getEnd(), 6);
+    }
 }
