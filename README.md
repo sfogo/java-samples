@@ -14,3 +14,6 @@ why this is the same as C(x+y,x) or C(x+y,y) **combinations**. See tests [here](
 - Largest Contiguous Sum
   - [Code](problems/src/main/java/com/vnet/problems/LargestContiguousSum.java)
   - [Doc](docs/largest-contiguous-sum.md)
+- Sorted Array Finder
+  - [Code](problems/src/main/java/com/vnet/problems/SAFinder.java)
+  - Find any occurrence, first occurrence, last occurrence in sorted array.
