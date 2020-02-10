@@ -51,10 +51,12 @@ public class LargestContiguousSum {
 
         for (int i=1; i<values.length; i++) {
             final int n = values[i];
-            if (n + locResult.max > n) {
+            // if (n + locResult.max > n) {
+            if (locResult.max > 0) {
                 locResult.max = n + locResult.max;
                 locResult.end += 1;
             } else {
+                // Max was negative and next number
                 locResult.max = n;
                 locResult.start = i;
                 locResult.end = i;

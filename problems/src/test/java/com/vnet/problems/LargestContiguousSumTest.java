@@ -68,4 +68,12 @@ public class LargestContiguousSumTest {
         Assert.assertEquals(result.getStart(), 3);
         Assert.assertEquals(result.getEnd(), 6);
     }
+
+    @Test
+    public void testWISAll() {
+        final LargestContiguousSum.Result result = lcs.getWithIndices(sampleAll);
+        Assert.assertEquals(result.getMax(), 6);
+        Assert.assertEquals(result.getStart(), 0);
+        Assert.assertEquals(result.getEnd(), 3);
+    }
 }
