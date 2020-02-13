@@ -47,4 +47,9 @@ public class NodeTest {
         Assert.assertEquals(Node.pathToString(list.get(5)), "A-D-G-L");
         Assert.assertEquals(Node.pathToString(list.get(6)), "A-D-H");
     }
+
+    @Test
+    public void testTreeHeight() {
+        Assert.assertEquals(createTree().heightAssumeTree(), 3);
+    }
 }

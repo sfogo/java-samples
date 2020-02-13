@@ -8,6 +8,7 @@ import java.util.Queue;
 
 @Slf4j
 public class Node {
+    private final static MaxFinder maxFinder = new MaxFinder();
     private char value;
     private List<Node> children;
 
@@ -40,6 +41,22 @@ public class Node {
             children = new LinkedList<>();
         }
         children.add(node);
+    }
+
+    public int heightAssumeTree() {
+        return heightAssumeTree(this, 0);
+    }
+
+    static private int heightAssumeTree(final Node node, final int level) {
+        if (node.hasNoChildren()) {
+            return level;
+        }
+
+        final int[] heights = new int[node.children.size()];
+        for (int c=0; c<node.children.size(); c++) {
+            heights[c] = heightAssumeTree(node.children.get(c), 1 + level);
+        }
+        return maxFinder.getMaxValue(heights);
     }
 
     public void traverseDepthFirstAssumeTree() {
