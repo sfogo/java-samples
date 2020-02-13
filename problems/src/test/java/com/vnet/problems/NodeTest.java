@@ -8,21 +8,18 @@ import java.util.List;
 public class NodeTest {
 
     private Node createTree() {
-        final Node n9 = new Node('I');
-        final Node n10= new Node('J');
-        final Node n11= new Node('K');
-        final Node n12= new Node('L');
-
-        final Node n5 = new Node('E', n9, n10);
-        final Node n6 = new Node('F');
-        final Node n7 = new Node('G', n11, n12);
-        final Node n8 = new Node('H');
-
-        final Node n2 = new Node('B', n5, n6);
-        final Node n3 = new Node('C');
-        final Node n4 = new Node('D', n7, n8);
-
-        return new Node('A', n2, n3, n4);
+        return new Node('A',
+                new Node('B',
+                        new Node('E',
+                                new Node('I'),
+                                new Node('J')),
+                        new Node('F')),
+                new Node('C'),
+                new Node('D',
+                        new Node('G',
+                                new Node('K'),
+                                new Node('L')),
+                        new Node('H')));
     }
 
     @Test
