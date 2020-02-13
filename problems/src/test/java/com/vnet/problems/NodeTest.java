@@ -39,5 +39,12 @@ public class NodeTest {
         final Node root = createTree();
         final List<List<Node>> list = root.getAllPathsDepthFirstAssumeTree();
         Assert.assertEquals(list.size(), 7);
+        Assert.assertEquals(Node.pathToString(list.get(0)), "A-B-E-I");
+        Assert.assertEquals(Node.pathToString(list.get(1)), "A-B-E-J");
+        Assert.assertEquals(Node.pathToString(list.get(2)), "A-B-F");
+        Assert.assertEquals(Node.pathToString(list.get(3)), "A-C");
+        Assert.assertEquals(Node.pathToString(list.get(4)), "A-D-G-K");
+        Assert.assertEquals(Node.pathToString(list.get(5)), "A-D-G-L");
+        Assert.assertEquals(Node.pathToString(list.get(6)), "A-D-H");
     }
 }
