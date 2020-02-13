@@ -131,7 +131,7 @@ public class Node {
         return s.toString();
     }
 
-    private static String pathToString(final List<Node> path) {
+    static String pathToString(final List<Node> path) {
         if (path == null || path.size() == 0) {
             return "";
         }
