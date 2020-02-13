@@ -23,29 +23,28 @@ public class NodeTest {
     }
 
     @Test
-    public void testDF() {
+    public void testTraverseTreeDepthFirst() {
         final Node root = createTree();
         root.traverseDepthFirstAssumeTree();
     }
 
     @Test
-    public void testBF() {
+    public void testTraverseTreeBreadthFirst() {
         final Node root = createTree();
         root.traverseBreadthFirstAssumeTree();
     }
 
     @Test
     public void testGetAllPaths() {
-        final Node root = createTree();
-        final List<List<Node>> list = root.getAllPathsDepthFirstAssumeTree();
-        Assert.assertEquals(list.size(), 7);
-        Assert.assertEquals(Node.pathToString(list.get(0)), "A-B-E-I");
-        Assert.assertEquals(Node.pathToString(list.get(1)), "A-B-E-J");
-        Assert.assertEquals(Node.pathToString(list.get(2)), "A-B-F");
-        Assert.assertEquals(Node.pathToString(list.get(3)), "A-C");
-        Assert.assertEquals(Node.pathToString(list.get(4)), "A-D-G-K");
-        Assert.assertEquals(Node.pathToString(list.get(5)), "A-D-G-L");
-        Assert.assertEquals(Node.pathToString(list.get(6)), "A-D-H");
+        final List<List<Node>> paths = createTree().getAllPathsDepthFirstAssumeTree();
+        Assert.assertEquals(paths.size(), 7);
+        Assert.assertEquals(Node.pathToString(paths.get(0)), "A-B-E-I");
+        Assert.assertEquals(Node.pathToString(paths.get(1)), "A-B-E-J");
+        Assert.assertEquals(Node.pathToString(paths.get(2)), "A-B-F");
+        Assert.assertEquals(Node.pathToString(paths.get(3)), "A-C");
+        Assert.assertEquals(Node.pathToString(paths.get(4)), "A-D-G-K");
+        Assert.assertEquals(Node.pathToString(paths.get(5)), "A-D-G-L");
+        Assert.assertEquals(Node.pathToString(paths.get(6)), "A-D-H");
     }
 
     @Test
