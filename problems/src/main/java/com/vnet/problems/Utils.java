@@ -8,7 +8,7 @@ public class Utils {
     /**
      * Find where to insert value in list
      * @param list list sorted ascending
-     * @return insert positiion
+     * @return insert position
      */
     public int sortedListedInsertPosition(final List<Integer> list, final int value) {
         if (list == null) {
