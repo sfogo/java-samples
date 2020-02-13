@@ -16,7 +16,7 @@ public class MaxFinderTest {
 
     @Test
     public void testBoth() {
-        final int[] a = Helper.createIntArray(100, 0, 50);
+        final int[] a = TestHelper.createIntArray(100, 0, 50);
         Assert.assertEquals(finder.getMaxValue(a), finder.scanForMaxValue(a));
     }
 

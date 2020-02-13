@@ -4,10 +4,10 @@ import com.vnet.common.VException;
 
 import java.util.Random;
 
-public class Helper {
+public class TestHelper {
     private static Random random = new Random(System.currentTimeMillis());
 
-    private Helper() {
+    private TestHelper() {
         // override default construction
     }
 
