@@ -16,6 +16,13 @@ public class Node {
         this.children = null;
     }
 
+    public Node(final char value, final Node... children) {
+        this.value = value;
+        for (final Node node : children) {
+            addChild(node);
+        }
+    }
+
     private boolean hasNoChildren() {
         return children == null || children.size() == 0;
     }

@@ -13,33 +13,16 @@ public class NodeTest {
         final Node n11= new Node('K');
         final Node n12= new Node('L');
 
-        final Node n5 = new Node('E');
+        final Node n5 = new Node('E', n9, n10);
         final Node n6 = new Node('F');
-        final Node n7 = new Node('G');
+        final Node n7 = new Node('G', n11, n12);
         final Node n8 = new Node('H');
 
-        n5.addChild(n9);
-        n5.addChild(n10);
-
-        n7.addChild(n11);
-        n7.addChild(n12);
-
-        final Node n2 = new Node('B');
+        final Node n2 = new Node('B', n5, n6);
         final Node n3 = new Node('C');
-        final Node n4 = new Node('D');
+        final Node n4 = new Node('D', n7, n8);
 
-        n2.addChild(n5);
-        n2.addChild(n6);
-
-        n4.addChild(n7);
-        n4.addChild(n8);
-
-        final Node root = new Node('A');
-        root.addChild(n2);
-        root.addChild(n3);
-        root.addChild(n4);
-
-        return root;
+        return new Node('A', n2, n3, n4);
     }
 
     @Test
