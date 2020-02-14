@@ -17,6 +17,6 @@ why this is the same as C(x+y,x) or C(x+y,y) **combinations**. See tests [here](
 - Sorted Array Finder
   - [Code](problems/src/main/java/com/vnet/problems/SAFinder.java)
   - Find any occurrence, first occurrence, last occurrence in sorted array.
-- Array Peak Finder : [Code](problems/src/main/java/com/vnet/problems/PeakFinder.java)
-- Array Max Finder : [Code](problems/src/main/java/com/vnet/problems/MaxFinder.java)
-- Tree things : [Code](problems/src/main/java/com/vnet/problems/Node.java) and [tests](problems/src/test/java/com/vnet/problems/NodeTest.java)
+- Array Peak Finder. [Code](problems/src/main/java/com/vnet/problems/PeakFinder.java)
+- Array Max Finder. [Code](problems/src/main/java/com/vnet/problems/MaxFinder.java)
+- Tree things : traverse, height, collect all paths. [Code](problems/src/main/java/com/vnet/problems/Node.java) and [tests](problems/src/test/java/com/vnet/problems/NodeTest.java)

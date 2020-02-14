@@ -48,6 +48,19 @@ public class NodeTest {
     }
 
     @Test
+    public void testGetAllPaths2() {
+        final List<List<Node>> paths = createTree().getAllPathsDepthFirstAssumeTree2();
+        Assert.assertEquals(paths.size(), 7);
+        Assert.assertEquals(Node.pathToString(paths.get(0)), "A-B-E-I");
+        Assert.assertEquals(Node.pathToString(paths.get(1)), "A-B-E-J");
+        Assert.assertEquals(Node.pathToString(paths.get(2)), "A-B-F");
+        Assert.assertEquals(Node.pathToString(paths.get(3)), "A-C");
+        Assert.assertEquals(Node.pathToString(paths.get(4)), "A-D-G-K");
+        Assert.assertEquals(Node.pathToString(paths.get(5)), "A-D-G-L");
+        Assert.assertEquals(Node.pathToString(paths.get(6)), "A-D-H");
+    }
+
+    @Test
     public void testTreeHeight() {
         Assert.assertEquals(createTree().heightAssumeTree(), 3);
     }

@@ -71,6 +71,10 @@ public class Node {
         return new TreePathContext().collectPaths(this);
     }
 
+    public List<List<Node>> getAllPathsDepthFirstAssumeTree2() {
+        return new TreePathContext().collectPaths2(this);
+    }
+
     private static class TreePathContext {
         private LinkedList<Node> currentPath;
         private List<List<Node>> paths;
@@ -82,6 +86,13 @@ public class Node {
             return paths;
         }
 
+        /**
+         * No need to initialize current path with starting node
+         * BUT need to trim current path up to current node before
+         * recurring into each child.
+         * @param node node
+         * @param depth current depth
+         */
         private void collect(final Node node, final int depth) {
             log.info("{}{}:{}", padding(depth), node.value, node.letterRank());
             currentPath.add(node);
@@ -99,7 +110,8 @@ public class Node {
         }
 
         /*
-         * Starting from the end of current path, remove nodes until current node is met.
+         * Starting from the end of current path,
+         * remove nodes until current node is met.
          * @param node current node
          */
         private void trimCurrentPathEnd(final Node node) {
@@ -110,6 +122,35 @@ public class Node {
                 } else {
                     currentPath.pollLast();
                 }
+            }
+        }
+
+        private List<List<Node>> collectPaths2(final Node node) {
+            currentPath = new LinkedList<>();
+            paths = new LinkedList<>();
+            currentPath.add(node);
+            collect2(node, 0);
+            return paths;
+        }
+
+        /**
+         * Current path was initialized with starting node
+         * @param node node
+         * @param depth current depth
+         */
+        private void collect2(final Node node, final int depth) {
+            log.info("{}{}:{}", padding(depth), node.value, node.letterRank());
+
+            if (node.hasNoChildren()) {
+                paths.add(new LinkedList<>(currentPath));
+                log.info("PATH#{}: {}", paths.size(), pathToString(currentPath));
+                return;
+            }
+
+            for (final Node child : node.children) {
+                currentPath.add(child);
+                collect2(child, 1 + depth);
+                currentPath.remove(child);
             }
         }
     }
