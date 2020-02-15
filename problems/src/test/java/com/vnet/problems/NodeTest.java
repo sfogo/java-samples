@@ -22,6 +22,24 @@ public class NodeTest {
                         new Node('H')));
     }
 
+    private Node createTreeTwo() {
+        return new Node('A',
+                new Node('B',
+                        new Node('E',
+                                new Node('I'),
+                                new Node('J')),
+                        new Node('F')),
+                new Node('C'),
+                new Node('D',
+                        new Node('G',
+                                new Node('K'),
+                                new Node('L',
+                                        new Node('M',
+                                                new Node('N',
+                                                        new Node('O'))))),
+                        new Node('H')));
+    }
+
     @Test
     public void testTraverseTreeDepthFirst() {
         final Node root = createTree();
@@ -32,6 +50,11 @@ public class NodeTest {
     public void testTraverseTreeBreadthFirst() {
         final Node root = createTree();
         root.traverseBreadthFirstAssumeTree();
+    }
+
+    @Test
+    public void testTraverseTreeTwoBreadthFirst() {
+        createTreeTwo().traverseBreadthFirstAssumeTree();
     }
 
     @Test
@@ -62,6 +85,16 @@ public class NodeTest {
 
     @Test
     public void testTreeHeight() {
-        Assert.assertEquals(createTree().heightAssumeTree(), 3);
+        Assert.assertEquals(createTree().heightByDepth(), 3);
+    }
+
+    @Test
+    public void testTreeTwoHeightbyDepth() {
+        Assert.assertEquals(createTreeTwo().heightByDepth(), 6);
+    }
+
+    @Test
+    public void testTreeTwoHeightByBreadth() {
+        Assert.assertEquals(createTreeTwo().heightByBreadth(), 6);
     }
 }

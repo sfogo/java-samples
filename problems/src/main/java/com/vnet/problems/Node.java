@@ -1,5 +1,7 @@
 package com.vnet.problems;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.LinkedList;
@@ -43,18 +45,43 @@ public class Node {
         children.add(node);
     }
 
-    public int heightAssumeTree() {
-        return heightAssumeTree(this, 0);
+    public int heightByDepth() {
+        return heightByDepth(this, 0);
     }
 
-    static private int heightAssumeTree(final Node node, final int level) {
+    @Data
+    @AllArgsConstructor
+    static private class QNode {
+        private final Node node;
+        private final int depth;
+    }
+
+    public int heightByBreadth() {
+        final Queue<QNode> queue = new LinkedList<>();
+        queue.add(new QNode(this, 0));
+        int h = 0;
+        while (!queue.isEmpty()) {
+            final QNode n = queue.poll();
+            if (n.depth > h) {
+                h = n.depth;
+            }
+            if (n.node.hasChildren()) {
+                for (final Node child : n.node.children) {
+                    queue.add(new QNode(child, 1 + n.depth));
+                }
+            }
+        }
+        return h;
+    }
+
+    static private int heightByDepth(final Node node, final int level) {
         if (node.hasNoChildren()) {
             return level;
         }
 
         final int[] heights = new int[node.children.size()];
         for (int c=0; c<node.children.size(); c++) {
-            heights[c] = heightAssumeTree(node.children.get(c), 1 + level);
+            heights[c] = heightByDepth(node.children.get(c), 1 + level);
         }
         return maxFinder.getMaxValue(heights);
     }
