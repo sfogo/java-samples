@@ -30,9 +30,8 @@ the number of distinct letters for the word to be a pyramid word.
 - Case insensitive
 - We stick to English with words of `foreign` origin written **without** accents.
 - The longest english word is [here](https://en.wikipedia.org/wiki/Pneumonoultramicroscopicsilicovolcanoconiosis) :
-it has less than **50** letters.
-- Therefore, if `MAX` is assumed to be the maximum word length, we only need to consider numbers `n` where `n*(n+1)/2`
-yields a length value lower than `MAX`
+it has less than **50** letters : therefore, if `MAX` is assumed to be the maximum word length,
+we only need to consider numbers `n` for which `n*(n+1)/2` yields a length value lower than `MAX`
 
 ## Try It
 - Service is [here](../apps/words/src/main/java/com/vnet/apps/words/Controller.java)
