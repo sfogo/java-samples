@@ -23,7 +23,8 @@ Therefore, we only need to look at words whose length can be expressed as a sum 
 This condition is necessary but of course not sufficient (e.g `bad` is not a pyramid word).
 
 Which also means that `n` is the number of distinct letters in word of length `L` : if you establish a map
-whose keys are the distinct letters and whose value is the  
+whose keys are the distinct letters and whose value is the letter frequency, then the number of map entries must
+the number of distinct letters. If not, the word is noy a pyramid word. 
 
 ## Assumptions for this exercise
 - Case insensitive
@@ -32,3 +33,30 @@ whose keys are the distinct letters and whose value is the
 it has less than **50** letters.
 - Therefore, if `MAX` is assumed to be the maximum word length, we only need to consider numbers `n` where `n*(n+1)/2`
 yields a length value lower than `MAX`
+
+## Try It
+- Clone [java-samples](https://github.com/sfogo/java-samples)
+- Start Service
+```
+./gradlew apps:words:bootRun
+```
+
+```
+curl http://localhost:8080/words/pyramids/deemed
+{"d":2,"e":3,"m":1}
+```
+
+```
+curl http://localhost:8080/words/pyramids/banana
+{"a":3,"b":1,"n":2}
+```
+
+```
+curl http://localhost:8080/words/pyramids/abcde
+{"error":"Word of length 5 cannot be a pyramid"}
+```
+
+```
+curl http://localhost:8080/words/pyramids/doomed
+{"error":"doomed is not a pyramid word. Most frequent character after e(1) is m(1)"}
+```
