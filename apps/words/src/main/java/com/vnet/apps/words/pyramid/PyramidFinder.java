@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,6 +39,10 @@ public class PyramidFinder {
     }
 
     public Map<Character, Integer> find(final String word) {
+        return get(word.toLowerCase());
+    }
+
+    private Map<Character, Integer> get(final String word) {
         if (word.length() > maxLength) {
             throw new VException("Word is too long. Max accepted length is " + maxLength);
         }
@@ -49,6 +52,7 @@ public class PyramidFinder {
             throw new VException("Word of length " + word.length() + " cannot be a pyramid");
         }
 
+        // Calculate the frequency of each letter
         final Map<Character, Integer> frequencies = new HashMap<>();
         for (int i=0; i<word.length(); i++) {
             frequencies.merge(word.charAt(i), 1, Integer::sum);

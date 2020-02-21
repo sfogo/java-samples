@@ -19,10 +19,11 @@ We can notice that if `L` is the length of pyramid word, then there must be an i
 ```
 L = 1 + 2 + 3 + .... + n = n*(n+1)/2 
 ```
-Therefore, we only need to look at words whose length can be expressed as the sum of the first `n `integers.
+Therefore, we only need to look at words whose length can be expressed as a sum of the first `n `integers.
 This condition is necessary but of course not sufficient (e.g `bad` is not a pyramid word).
 
-Which also means that `n` is the number of distinct letters in word of length `L`.
+Which also means that `n` is the number of distinct letters in word of length `L` : if you establish a map
+whose keys are the distinct letters and whose value is the  
 
 ## Assumptions for this exercise
 - Case insensitive
