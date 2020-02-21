@@ -60,5 +60,10 @@ curl http://localhost:8080/words/pyramids/abcde
 
 ```
 curl http://localhost:8080/words/pyramids/doomed
-{"error":"doomed is not a pyramid word. Most frequent character after e(1) is m(1)"}
+{"error":"doomed is not a pyramid word"}
+```
+
+```
+curl http://localhost:8080/words/pyramids/aaaabbbbcd
+{"error":"aaaabbbbcd is not a pyramid word. Most frequent character after c(1) is d(1)"}
 ```
