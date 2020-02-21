@@ -24,7 +24,8 @@ This condition is necessary but of course not sufficient (e.g `bad` or `abcdef` 
 
 It also means that `n` is actually the number of distinct letters in word of length `L`. Therefore, if you establish a map
 whose keys are the distinct letters and whose values are the letter frequencies, then the number of map entries must be
-the number of distinct letters for the word to be a pyramid word. 
+the number of distinct letters for the word to be a pyramid word. Even if that condition is satisfied, we still need
+to check the counts. For instance, `aaaabbbbcd` yields 4 entries and is not a pyramid word.
 
 ## Assumptions for this exercise
 - Case insensitive

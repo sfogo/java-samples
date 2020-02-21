@@ -61,41 +61,43 @@ public class PyramidFinder {
         // If mapped frequencies do not contain the expected number of distinct letters,
         // Then we can tell right away that word is not a pyramid
         if (frequencies.size() != nbExpectedDistinctLetters) {
-            throw new VException(explainWhyNot(word, frequencies));
+            throw new VException(word + " is not a pyramid word");
         }
 
+        // We have the right number of letters but we need to check
+        // the actual counts. e.g. aaaabbbbcd is not a pyramid and yields 4 entries
+        checkFrequencies(word, frequencies);
         return frequencies;
     }
 
     /**
-     * Give first reason why word is not a pyramid
+     * Check Frequencies
      * @param word word
      * @param frequencies mapped frequencies
      * @return message
      */
-    private String explainWhyNot(String word, final Map<Character, Integer> frequencies) {
-        final StringBuilder builder = new StringBuilder(word + " is not a pyramid word.");
+    private void checkFrequencies(String word, final Map<Character, Integer> frequencies) {
         final List<Map.Entry<Character, Integer>> list = new ArrayList<>(frequencies.entrySet());
         list.sort(Map.Entry.comparingByValue());
 
-        boolean explained = false;
-        for (int i=0; i<list.size() && !explained; i++) {
+        for (int i=0; i<list.size() ; i++) {
             final Map.Entry<Character, Integer> entry = list.get(i);
             if (i == 0) {
                 if (entry.getValue() != 1) {
-                    explained = true;
+                    final StringBuilder builder = new StringBuilder(word + " is not a pyramid word.");
                     builder.append(" Least frequent character ").append(entry.getKey())
                             .append(" appears ").append(entry.getValue()).append(" times (should appear only once).");
+                    throw new VException(builder.toString());
                 }
             } else {
                 final Map.Entry<Character, Integer> prev = list.get(i-1);
                 if (!entry.getValue().equals(1 + prev.getValue())) {
+                    final StringBuilder builder = new StringBuilder(word + " is not a pyramid word.");
                     builder.append(" Most frequent character after ").append(prev.getKey()).append("(").append(prev.getValue()).append(")");
                     builder.append(" is ").append(entry.getKey()).append("(").append(entry.getValue()).append(")");
-                    explained = true;
+                    throw new VException(builder.toString());
                 }
             }
         }
-        return builder.toString();
     }
 }
