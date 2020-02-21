@@ -20,11 +20,11 @@ We can notice that if `L` is the length of pyramid word, then there must be an i
 L = 1 + 2 + 3 + .... + n = n*(n+1)/2 
 ```
 Therefore, we only need to look at words whose length can be expressed as a sum of the first `n `integers.
-This condition is necessary but of course not sufficient (e.g `bad` is not a pyramid word).
+This condition is necessary but of course not sufficient (e.g `bad` or `abcdef` are not pyramid words).
 
-Which also means that `n` is the number of distinct letters in word of length `L` : if you establish a map
-whose keys are the distinct letters and whose value is the letter frequency, then the number of map entries must
-the number of distinct letters. If not, the word is noy a pyramid word. 
+It also means that `n` is actually the number of distinct letters in word of length `L`. Therefore, if you establish a map
+whose keys are the distinct letters and whose values are the letter frequencies, then the number of map entries must be
+the number of distinct letters for the word to be a pyramid word. 
 
 ## Assumptions for this exercise
 - Case insensitive
@@ -35,8 +35,8 @@ it has less than **50** letters.
 yields a length value lower than `MAX`
 
 ## Try It
-- Service is defined [here](../apps/words/src/main/java/com/vnet/apps/words/Controller.java)
-- Pyramid Word Logic is defined [here](../apps/words/src/main/java/com/vnet/apps/words/pyramid/PyramidFinder.java)
+- Service is [here](../apps/words/src/main/java/com/vnet/apps/words/Controller.java)
+- Pyramid Word Logic is [here](../apps/words/src/main/java/com/vnet/apps/words/pyramid/PyramidFinder.java)
 - Clone [java-samples](https://github.com/sfogo/java-samples)
 - Start Service
 ```
