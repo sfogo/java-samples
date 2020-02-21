@@ -5,3 +5,4 @@ include "problems"
 include "common"
 
 include "apps:things"
+include "apps:words"
