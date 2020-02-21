@@ -27,10 +27,10 @@ public class PyramidFinder {
         int n = 1;
         while (!done) {
             final int sum = Sums.firstN(n);
-            // Valid lengths must be expressed as n*(n+1)/2 values (sum of first n integers)
+            // Valid word lengths must be expressed as n*(n+1)/2 values (sum of first n integers)
             // Each valid length n*(n+1)/2 is kept alongside the integer n.
-            // It is CRUCIAL to keep that number because if number is a pyramid,
-            // it expresses the number of different letters in the word!
+            // It is CRUCIAL to keep that number because if word is a pyramid,
+            // it expresses the number of different letters in the word.
             validLengths.put(sum, n);
             log.info("Added {} for {}", sum, n);
             done = sum > maxLength;
