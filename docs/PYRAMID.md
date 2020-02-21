@@ -35,6 +35,8 @@ it has less than **50** letters.
 yields a length value lower than `MAX`
 
 ## Try It
+- Service is defined [here](../apps/words/src/main/java/com/vnet/apps/words/Controller.java)
+- Pyramid Word Logic is defined [here](../apps/words/src/main/java/com/vnet/apps/words/pyramid/PyramidFinder.java)
 - Clone [java-samples](https://github.com/sfogo/java-samples)
 - Start Service
 ```
