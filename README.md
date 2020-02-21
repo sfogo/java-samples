@@ -20,3 +20,5 @@ why this is the same as C(x+y,x) or C(x+y,y) **combinations**. See tests [here](
 - Array Peak Finder. [Code](problems/src/main/java/com/vnet/problems/PeakFinder.java)
 - Array Max Finder. [Code](problems/src/main/java/com/vnet/problems/MaxFinder.java)
 - Tree things : traverse, height, collect all paths. [Code](problems/src/main/java/com/vnet/problems/Node.java) and [tests](problems/src/test/java/com/vnet/problems/NodeTest.java)
+- Pyramid Words. See documentation [here](docs/PYRAMID.md)
+  - [Code](apps/words/src/main/java/com/vnet/apps/words/pyramid/PyramidFinder.java)
