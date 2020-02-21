@@ -1,0 +1,17 @@
+apply from: "../apps.gradle"
+
+heroku {
+    appName = "words"
+    includes = ["apps/words/build/libs/words-0.0.1-SNAPSHOT.jar"]
+    includeBuildDir = false
+}
+
+dependencies {
+    implementation project(":common")
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.1.9.RELEASE'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.1.9.RELEASE'
+}
+
+bootRun {
+    systemProperty 'spring.profiles.active', 'local-development'
+}

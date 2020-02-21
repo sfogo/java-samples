@@ -1,0 +1,5 @@
+app:
+  message: Welcome to Words App
+
+words:
+  maxLength: 80
