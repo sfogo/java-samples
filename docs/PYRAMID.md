@@ -36,6 +36,8 @@ we only need to consider numbers `n` for which `n*(n+1)/2` yields a length value
 
 ## Try It
 - Service is [here](../apps/words/src/main/java/com/vnet/apps/words/Controller.java)
+  - GET `/words/pyramids/{word}` gives a `200` if word is a pyramid word
+  - GET `/words/pyramids/{word}` gives a `404` if word is not a pyramid word
 - Pyramid Word Logic is [here](../apps/words/src/main/java/com/vnet/apps/words/pyramid/PyramidFinder.java)
 - Clone [java-samples](https://github.com/sfogo/java-samples)
 - Start Service
