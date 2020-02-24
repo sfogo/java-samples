@@ -18,7 +18,7 @@ Therefore one solution is to explore recursively these transitions, and count on
   - Going up `Y` times
 
 Otherwise you will never make it to the top right corner.
-Therefore, the number of possible paths is the number of ways to do X steps north out of X + Y steps,
+Therefore, the number of possible paths is the number of ways to do `X` steps east (i.e. right) out of `X + Y` steps,
 which is the number of X-size combinations in a set of size `X + Y`, which is the
 same as the number of Y-size combinations in a set of size `X + Y`.
 
