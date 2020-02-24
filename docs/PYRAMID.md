@@ -20,12 +20,15 @@ We can notice that if `L` is the length of pyramid word, then there must be an i
 L = 1 + 2 + 3 + .... + n = n*(n+1)/2 
 ```
 Therefore, we only need to look at words whose length can be expressed as a sum of the first `n `integers.
-This condition is necessary but of course not sufficient (e.g `bad` or `abcdef` are not pyramid words).
+This condition is necessary but of course not sufficient. For instance:
+- Length(`bad`) = `3` = `1 + 2` is not a pyramid word
+- Length(`abcdef`) = `6` = `1 + 2 + 3` is not either
 
 It also means that `n` is actually the number of distinct letters in word of length `L`. Therefore, if you establish a map
 whose keys are the distinct letters and whose values are the letter frequencies, then the number of map entries must be
 the number of distinct letters for the word to be a pyramid word. Even if that condition is satisfied, we still need
-to check the counts. For instance, `aaaabbbbcd` yields 4 entries and is not a pyramid word.
+to check the counts, For instance:
+- Length(`aaaabbbbcd`) = `10` = `1 + 2 + 3 + 4` yields `4` map entries `a:4, b:4, c:1, d:1` and is not a pyramid word.
 
 ## Assumptions for this exercise
 - Case insensitive
