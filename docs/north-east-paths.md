@@ -9,13 +9,13 @@ The rule is that you can only move up or right. Therefore, once at position `(x,
 - `(x + 1, y)` provided that `x < X`
 - `(x, y + 1)` provided that `y < Y`
 
-Therefore the solution is to explore recursively these transitions, and count one path every time you hit `(X, Y)`.
+Therefore one solution is to explore recursively these transitions, and count one path every time you hit `(X, Y)`.
 
 ## Maths only
 - Whichever path you take, it takes `X + Y` steps to go from bottom left to top right.
 - If you have to take a total of `X + Y` steps, there is no other way than:
-  - Going up X times
-  - Going right Y times
+  - Going right `X` times
+  - Going up `Y` times
 
 Otherwise you will never make it to the top right corner.
 Therefore, the number of possible paths is the number of ways to do X steps north out of X + Y steps,
