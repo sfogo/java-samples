@@ -74,29 +74,26 @@ public class PyramidFinder {
      * Check Frequencies
      * @param word word
      * @param frequencies mapped frequencies
-     * @return message
      */
     private void checkFrequencies(String word, final Map<Character, Integer> frequencies) {
         final List<Map.Entry<Character, Integer>> list = new ArrayList<>(frequencies.entrySet());
+        // Sort entries in ascending order
         list.sort(Map.Entry.comparingByValue());
 
         for (int i=0; i<list.size() ; i++) {
             final Map.Entry<Character, Integer> entry = list.get(i);
-            if (i == 0) {
-                if (entry.getValue() != 1) {
-                    final StringBuilder builder = new StringBuilder(word + " is not a pyramid word.");
-                    builder.append(" Least frequent character ").append(entry.getKey())
-                            .append(" appears ").append(entry.getValue()).append(" times (should appear only once).");
-                    throw new VException(builder.toString());
+            // Entries 0 to n-1 must contain values 1 to n
+            if (!entry.getValue().equals(1 + i)) {
+                String s = word + " is not a pyramid word.";
+                if (i == 0) {
+                    s += " Least frequent character " + entry.getKey() + " appears " + entry.getValue();
+                    s += " times (while it should appear only once).";
+                } else {
+                    final Map.Entry<Character, Integer> prev = list.get(i-1);
+                    s += " Most frequent character after " + prev.getKey() + "(" + prev.getValue() + ")";
+                    s += " is " + entry.getKey() + "(" + entry.getValue() + ")";
                 }
-            } else {
-                final Map.Entry<Character, Integer> prev = list.get(i-1);
-                if (!entry.getValue().equals(1 + prev.getValue())) {
-                    final StringBuilder builder = new StringBuilder(word + " is not a pyramid word.");
-                    builder.append(" Most frequent character after ").append(prev.getKey()).append("(").append(prev.getValue()).append(")");
-                    builder.append(" is ").append(entry.getKey()).append("(").append(entry.getValue()).append(")");
-                    throw new VException(builder.toString());
-                }
+                throw new VException(s);
             }
         }
     }
