@@ -8,9 +8,9 @@ why this is the same as C(x+y,x) or C(x+y,y) **combinations**. See tests [here](
   - List [them](problems/src/main/java/com/vnet/problems/NEPaths.java) as Grid is recursively traversed.
   - North East Paths [service](http://app137.herokuapp.com/things/paths/?w=3&h=2) deployed on [Heroku](https://www.heroku.com) free tier
 (_it may take a few seconds to wake up since Heroku free tier pauses unused services_.)
-  - [Two.js](https://two.js.org/) [animation](https://app137.herokuapp.com/north-east-paths.html) that traverses the grid.
-  - [Two.js](https://two.js.org/) [animation](https://app137.herokuapp.com/north-east-paths-counters.html) that traverses
-  the grid and shows how many times each grid point gets visited. See also [here](docs/north-east-paths.md#how-many-paths-visit-a-given-point-in-the-grid).
+  - [Two.js](https://two.js.org/) grid traverse [animation](https://app137.herokuapp.com/north-east-paths.html).
+  - [Two.js](https://two.js.org/) grid traverse [animation](https://app137.herokuapp.com/north-east-paths-counters.html)
+   that shows how many times each grid point gets visited. See doc [here](docs/north-east-paths.md#how-many-paths-visit-a-given-point-in-the-grid).
 - Largest Contiguous Sum
   - [Code](problems/src/main/java/com/vnet/problems/LargestContiguousSum.java)
   - [Doc](docs/largest-contiguous-sum.md)
@@ -20,5 +20,4 @@ why this is the same as C(x+y,x) or C(x+y,y) **combinations**. See tests [here](
 - Array Peak Finder. [Code](problems/src/main/java/com/vnet/problems/PeakFinder.java)
 - Array Max Finder. [Code](problems/src/main/java/com/vnet/problems/MaxFinder.java)
 - Tree things : traverse, height, collect all paths. [Code](problems/src/main/java/com/vnet/problems/Node.java) and [tests](problems/src/test/java/com/vnet/problems/NodeTest.java)
-- Pyramid Words. See documentation [here](docs/PYRAMID.md)
-  - [Code](apps/words/src/main/java/com/vnet/apps/words/pyramid/PyramidFinder.java)
+- Pyramid Words. See documentation [here](docs/PYRAMID.md). Pyramid logic is [here](apps/words/src/main/java/com/vnet/apps/words/pyramid/PyramidFinder.java).
