@@ -72,3 +72,8 @@ curl http://localhost:8080/words/pyramids/doomed
 curl http://localhost:8080/words/pyramids/aaaabbbbcd
 {"error":"aaaabbbbcd is not a pyramid word. Most frequent character after c(1) is d(1)"}
 ```
+
+```
+curl http://localhost:8080/words/pyramids/aaaabbbccd
+{"a":4,"b":3,"c":2,"d":1}
+```
