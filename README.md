@@ -11,12 +11,8 @@ why this is the same as C(x+y,x) or C(x+y,y) **combinations**. See tests [here](
   - [Two.js](https://two.js.org/) grid traverse [animation](https://app137.herokuapp.com/north-east-paths.html).
   - [Two.js](https://two.js.org/) grid traverse [animation](https://app137.herokuapp.com/north-east-paths-counters.html)
    that shows how many times each grid point gets visited. See doc [here](docs/north-east-paths.md#how-many-paths-visit-a-given-point-in-the-grid).
-- Largest Contiguous Sum
-  - [Code](problems/src/main/java/com/vnet/problems/LargestContiguousSum.java)
-  - [Doc](docs/largest-contiguous-sum.md)
-- Sorted Array Finder
-  - [Code](problems/src/main/java/com/vnet/problems/SAFinder.java)
-  - Find any occurrence, first occurrence, last occurrence in sorted array.
+- Largest Contiguous Sum ([Code](problems/src/main/java/com/vnet/problems/LargestContiguousSum.java), [Doc](docs/largest-contiguous-sum.md))
+- Sorted Array Finder (Find any occurrence, first occurrence, last occurrence in sorted array). [Code](problems/src/main/java/com/vnet/problems/SAFinder.java)
 - Array Peak Finder. [Code](problems/src/main/java/com/vnet/problems/PeakFinder.java)
 - Array Max Finder. [Code](problems/src/main/java/com/vnet/problems/MaxFinder.java)
 - Tree things : traverse, height, collect all paths. [Code](problems/src/main/java/com/vnet/problems/Node.java) and [tests](problems/src/test/java/com/vnet/problems/NodeTest.java)
