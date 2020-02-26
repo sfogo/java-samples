@@ -60,7 +60,7 @@ public class BlockLetters {
                 // and if we could swap one selected cube with one remaining block.
                 // In order for a swap to be possible, the following condition must be met:
                 // One selected block must contain current letter AND
-                // the letter is was selected for must be available in one of the remaining blocks
+                // the letter ts was selected for must be available in one of the remaining blocks
                 Block remainingBlock = null;
                 Integer swapIndex = null;
                 for (int s=0; s<selectedBlocks.size(); s++) {
