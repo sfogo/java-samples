@@ -55,4 +55,12 @@ public class TestHelper {
     private static int getValueInRange(final int minValue, final int maxValue) {
         return minValue + random.nextInt(maxValue - minValue + 1);
     }
+
+    public static String generate(final int length) {
+        final byte[] bytes = new byte[length];
+        for (int i=0; i<length; i++) {
+            bytes[i] = (byte) ('A' + random.nextInt(26));
+        }
+        return new String(bytes);
+    }
 }
