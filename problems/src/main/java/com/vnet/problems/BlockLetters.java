@@ -3,10 +3,12 @@ package com.vnet.problems;
 import com.vnet.common.VException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.LinkedList;
 import java.util.List;
 
+@Slf4j
 public class BlockLetters {
     @Data
     public static class Block {
@@ -85,6 +87,10 @@ public class BlockLetters {
                     selectedBlocks.add(swapIndex, new BlockSelection(remainingBlock, swappedSelection.letter));
                     // Added swapped block for current letter
                     selectedBlocks.add(new BlockSelection(swappedSelection.block, letter));
+                    log.info("Replaced {}:{} with {} to get {} back",
+                            swappedSelection.block.lettersAsString, swappedSelection.letter,
+                            remainingBlock.lettersAsString,
+                            letter);
                 }
             } else {
                 // Letter was found in one of the remaining blocks
@@ -92,6 +98,7 @@ public class BlockLetters {
                 // - Remove it from remaining blocks
                 selectedBlocks.add(new BlockSelection(block, letter));
                 remainingBlocks.remove(block);
+                log.info("..Picked {}:{}", block.lettersAsString, letter);
             }
         }
 

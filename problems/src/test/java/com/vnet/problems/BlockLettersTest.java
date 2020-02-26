@@ -68,6 +68,29 @@ public class BlockLettersTest {
         }
     }
 
+    @Test
+    public void testBigger() {
+        final List<BlockLetters.Block> blocks = new LinkedList<Block>() {{
+            add(new Block("ASLXSB"));
+            add(new Block("CMSNMV"));
+            add(new Block("AVATJU"));
+            add(new Block("JIMNZS"));
+            add(new Block("EZFLFU"));
+            add(new Block("KUFQOI"));
+            add(new Block("LCVYMJ"));
+            add(new Block("ZQUMSY"));
+            add(new Block("UJLMCM"));
+            add(new Block("RUZMMG"));
+            add(new Block("NRMNNO"));
+            add(new Block("HPKNMD"));
+        }};
+        showBlocks(blocks);
+        final String word = "ABCDEF";
+        final List<BlockSelection> selectedBlocks = blockLetters.selectBlocks(word, blocks);
+        Assert.assertEquals(selectedBlocks.size(), word.length());
+        show(selectedBlocks);
+    }
+
     private void show(final List<BlockSelection> selectedBlocks) {
         for (final BlockSelection selection : selectedBlocks) {
             System.out.println(selection.getBlock().getLettersAsString() + " for " + selection.getLetter());
