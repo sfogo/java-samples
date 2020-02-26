@@ -109,12 +109,11 @@ public class BlockLetters {
      * @return first block found, null otherwise
      */
     private Block find(final char letter, final List<Block> blocks) {
-        Block block = null;
-        for (int b=0; b<blocks.size() && block == null; b++) {
-            if (blocks.get(b).contains(letter)) {
-                block = blocks.get(b);
+        for (final Block block : blocks) {
+            if (block.contains(letter)) {
+                return block;
             }
         }
-        return block;
+        return null;
     }
 }
