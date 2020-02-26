@@ -24,10 +24,10 @@ public class BlockLetters {
         }
 
         public Block(final String s) {
-            lettersAsString = s;
-            letters = new char[s.toUpperCase().length()];
+            lettersAsString = s.toUpperCase();
+            letters = new char[lettersAsString.length()];
             for (int i=0; i<s.length(); i++) {
-                letters[i] = s.charAt(i);
+                letters[i] = lettersAsString.charAt(i);
             }
         }
     }
