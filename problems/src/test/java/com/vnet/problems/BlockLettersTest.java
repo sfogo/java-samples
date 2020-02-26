@@ -41,6 +41,16 @@ public class BlockLettersTest {
         show(selectedBlocks);
     }
 
+    @Test(expectedExceptions = VException.class)
+    public void testNotEnoughCubes() {
+        final List<BlockLetters.Block> blocks = new LinkedList<Block>() {{
+            add(new Block("AAA"));
+            add(new Block("BBC"));
+            add(new Block("DDD"));
+        }};
+        blockLetters.selectBlocks("ABCD", blocks);
+    }
+
     @Test
     public void testZoo() {
         final List<BlockLetters.Block> blocks = new LinkedList<Block>() {{
