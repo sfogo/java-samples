@@ -48,7 +48,7 @@ public class WordBreaker {
                 return;
             }
 
-            final List<Integer> candidates = startsWithIndices(sentence);
+            final List<Integer> candidates = getCandidateIndices(sentence);
             if (candidates.size() == 0) {
                 throw new VException("Cannot decompose sentence:" + sentence);
             }
@@ -72,9 +72,9 @@ public class WordBreaker {
     /**
      * Returns possible starts for sentence
      * @param sentence sentence
-     * @return list of possible indices
+     * @return list of all words (as indices) that are a beginning of the sentence
      */
-    private List<Integer> startsWithIndices(final String sentence) {
+    private List<Integer> getCandidateIndices(final String sentence) {
         final List<Integer> indices = new LinkedList<>();
         for (int i=0; i<dictionary.length; i++) {
             if (sentence.startsWith(dictionary[i])) {
