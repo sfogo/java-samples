@@ -52,8 +52,7 @@ public class WordBreaker {
             if (candidates.size() == 0) {
                 throw new VException("Cannot decompose sentence:" + sentence);
             }
-
-
+            
             for (final Integer integer : candidates) {
                 if (responseIndices == null) {
                     try {
