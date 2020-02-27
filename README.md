@@ -20,3 +20,4 @@ why this is the same as C(x+y,x) or C(x+y,y) **combinations**. See tests [here](
 - Block Letters (or cubes with 6 letters). Given a set of cubes, pick cubes to make a word. It actually does not matter
 how many letters each block has. It could be 12-letter blocks or even differently sized blocks.
 Here is a possible [solution](problems/src/main/java/com/vnet/problems/BlockLetters.java) where you may have to swap already selected blocks.
+- Break up a string into words found in a dictionary. One possible recursive [approach](problems/src/main/java/com/vnet/problems/WordBreaker.java) and [tests](problems/src/test/java/com/vnet/problems/WordBreakerTest.java).
