@@ -37,7 +37,7 @@ public class WordBreaker {
             responseIndices = null;
             breakupSentence(sentence);
             if (responseIndices == null) {
-                throw new VException("Cannot breakup " + sentence);
+                throw new VException("Cannot decompose " + sentence);
             }
             return responseIndices;
         }
