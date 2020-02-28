@@ -5,10 +5,10 @@ public class Fibonacci {
         if (n < 0) {
             throw new VException("Invalid value:" + n);
         }
-        return rFibo(n);
+        return f(n);
     }
 
-    private int rFibo(final int n) {
+    private int f(final int n) {
         if (n == 0) {
             return 1;
         }
@@ -17,7 +17,7 @@ public class Fibonacci {
             return 1;
         }
 
-        return recursive(n-1) + recursive(n-2);
+        return f(n-1) + f(n-2);
     }
 
     public int iterative(final int n) {
