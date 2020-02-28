@@ -21,3 +21,5 @@ why this is the same as C(x+y,x) or C(x+y,y) **combinations**. See tests [here](
 how many letters each block has. It could be 12-letter blocks or even differently sized blocks.
 Here is a possible [solution](problems/src/main/java/com/vnet/problems/BlockLetters.java) where you may have to swap already selected blocks.
 - Break up a string into words found in a dictionary. One possible recursive [approach](problems/src/main/java/com/vnet/problems/WordBreaker.java) and [tests](problems/src/test/java/com/vnet/problems/WordBreakerTest.java).
+- Stairs. Knowing that you can only climb one step or 2 steps at a time, how many ways are there to climb N steps? One possible recursive solution [here](problems/src/main/java/com/vnet/problems/Stairs.java) with [tests](problems/src/test/java/com/vnet/problems/StairsTest.java)
+but see [here](docs/STAIRS.md) why no code is required and why this is Fibonacci.
