@@ -1,5 +1,6 @@
 package com.vnet.problems;
 
+import com.vnet.common.Fibonacci;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -29,8 +30,11 @@ public class StairsTest {
 
     @Test
     public void show10() {
+        final Fibonacci fibonacci = new Fibonacci();
         for (int i=1; i<=10; i++) {
-            System.out.println(String.format("%d : %d", i, stairs.climb(i)));
+            final int nb = stairs.climb(i);
+            System.out.println(String.format("%d : %d", i, nb));
+            Assert.assertEquals(nb, fibonacci.iterative(i));
         }
     }
 }
