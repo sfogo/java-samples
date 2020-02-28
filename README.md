@@ -23,4 +23,4 @@ Here is a possible [solution](problems/src/main/java/com/vnet/problems/BlockLett
 - Break up a string into words found in a dictionary. One possible recursive [approach](problems/src/main/java/com/vnet/problems/WordBreaker.java) and [tests](problems/src/test/java/com/vnet/problems/WordBreakerTest.java).
 - Stairs. Knowing that you can only climb one step or 2 steps at a time, how many ways are there to climb N steps? One possible recursive solution [here](problems/src/main/java/com/vnet/problems/Stairs.java) with [tests](problems/src/test/java/com/vnet/problems/StairsTest.java)
 but see [here](docs/STAIRS.md) why no code is required and why this is [Fibonacci](https://en.wikipedia.org/wiki/Fibonacci_number).
-- Best Buy/Sell operation [code](problems/src/main/java/com/vnet/problems/BestBuySell.java) [tests](problems/src/test/java/com/vnet/problems/BestBuySellTest.java)
+- Best Buy/Sell operation ([code](problems/src/main/java/com/vnet/problems/BestBuySell.java), [tests](problems/src/test/java/com/vnet/problems/BestBuySellTest.java))
