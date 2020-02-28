@@ -9,7 +9,7 @@ public class Fibonacci {
     }
 
     private int f(final int n) {
-        return n == 0 ? 1 : n == 1 ? 1 : f(n-1) + f(n-2);
+        return n < 2 ? 1 : f(n-1) + f(n-2);
     }
 
     public int iterative(final int n) {
