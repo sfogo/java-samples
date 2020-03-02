@@ -24,3 +24,4 @@ Here is a possible [solution](problems/src/main/java/com/vnet/problems/BlockLett
 - Stairs. Knowing that you can only climb one step or 2 steps at a time, how many ways are there to climb N steps? One possible recursive solution [here](problems/src/main/java/com/vnet/problems/Stairs.java) with [tests](problems/src/test/java/com/vnet/problems/StairsTest.java)
 but see [here](docs/STAIRS.md) why no code is required and why this is [Fibonacci](https://en.wikipedia.org/wiki/Fibonacci_number).
 - Best Buy/Sell operation ([code](problems/src/main/java/com/vnet/problems/BestBuySell.java), [tests](problems/src/test/java/com/vnet/problems/BestBuySellTest.java))
+- Move all zeros (or any given value) to end of an array ([Code](problems/src/main/java/com/vnet/problems/ArrayMover.java) and [Tests](problems/src/test/java/com/vnet/problems/ArrayMoverTest.java))
