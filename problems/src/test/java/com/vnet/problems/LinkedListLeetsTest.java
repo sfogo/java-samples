@@ -1,10 +1,11 @@
 package com.vnet.problems;
 
+import com.vnet.common.VException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class LinkedListLeetsTest {
-    final LinkedListLeets solution = new LinkedListLeets();
+    private final LinkedListLeets solution = new LinkedListLeets();
 
     @Test
     public void testCycle() {
@@ -60,5 +61,56 @@ public class LinkedListLeetsTest {
         c.next = d;
         d.next = null;
         Assert.assertNull(solution.getCycleStart(a));
+    }
+
+    @Test
+    public void testRemoveFromEnd() {
+        final ListNode a = new ListNode(1);
+        final ListNode b = new ListNode(2);
+        final ListNode c = new ListNode(3);
+        final ListNode d = new ListNode(4);
+        a.next = b;
+        b.next = c;
+        c.next = d;
+        d.next = null;
+        solution.removeFromEnd(a, 3);
+    }
+
+    @Test
+    public void testRemove() {
+        final ListNode a = new ListNode(1);
+        final ListNode b = new ListNode(2);
+        final ListNode c = new ListNode(3);
+        final ListNode d = new ListNode(4);
+        a.next = b;
+        b.next = c;
+        c.next = d;
+        d.next = null;
+        final ListNode head = solution.removeFromEnd(a, 3);
+        Assert.assertEquals(head, a);
+        Assert.assertEquals(head.next, c);
+    }
+
+    @Test
+    public void testRemoveHead() {
+        final ListNode a = new ListNode(1);
+        final ListNode b = new ListNode(2);
+        final ListNode c = new ListNode(3);
+        a.next = b;
+        b.next = c;
+        c.next = null;
+        final ListNode head = solution.removeFromEnd(a, 3);
+        Assert.assertEquals(head, b);
+    }
+
+    @Test(expectedExceptions = VException.class)
+    public void testRemoveNotEnough() {
+        final ListNode a = new ListNode(1);
+        final ListNode b = new ListNode(2);
+        final ListNode c = new ListNode(3);
+        a.next = b;
+        b.next = c;
+        c.next = null;
+        solution.removeFromEnd(a, 7);
     }
 }

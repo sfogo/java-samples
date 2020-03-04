@@ -1,5 +1,7 @@
 package com.vnet.problems;
 
+import com.vnet.common.VException;
+
 public class LinkedListLeets {
     public boolean hasCycle(final ListNode head) {
         ListNode slow = head;
@@ -38,5 +40,43 @@ public class LinkedListLeets {
             fast = fast.next == null ? null : fast.next.next;
         }
         return null;
+    }
+
+    /**
+     * Remove nth element from end of list
+     * @param head list head (assumes list it has no cycle)
+     * @param n nth element (n=0 removes nothing, n=1 removes last)
+     */
+    public ListNode removeFromEnd(final ListNode head, final int n) {
+        if (head == null || n <=0) {
+            return head;
+        }
+        int count = 1;
+        ListNode node = head;
+        while (count < n && node.next != null) {
+            count++;
+            node = node.next;
+        }
+
+        if (count != n) {
+            throw new VException("Too few elements");
+        }
+
+        ListNode left = head;
+        ListNode right = node;
+        ListNode parent = null;
+
+        while (right.next != null) {
+            parent = left;
+            left = left.next;
+            right = right.next;
+        }
+
+        if (parent == null) {
+            return left.next;
+        } else {
+            parent.next = left.next;
+            return head;
+        }
     }
 }
