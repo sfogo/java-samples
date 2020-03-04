@@ -45,7 +45,7 @@ public class LinkedListLeets {
     /**
      * Remove nth element from end of list.
      * - Check if list is long enough to remove n elements for n (n=0 removes nothing, n=1 removes last)
-     * - If list is not enough, slide a 2-pointer (left/right) fork whose width is n-1 until next of right hits null,
+     * - If list is long enough, slide a 2-pointer (left/right) window whose width is n-1 until next of right hits null,
      * then left hand side of the fork is the nth element from end we want to remove.
      * @param head list head (assumes list it has no cycle)
      * @param n nth element
