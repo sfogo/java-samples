@@ -43,9 +43,12 @@ public class LinkedListLeets {
     }
 
     /**
-     * Remove nth element from end of list
+     * Remove nth element from end of list.
+     * - Check if list is long enough to remove n elements for n (n=0 removes nothing, n=1 removes last)
+     * - If list is not enough, slide a 2-pointer (left/right) fork whose width is n-1 until next of right hits null,
+     * then left hand side of the fork is the nth element from end we want to remove.
      * @param head list head (assumes list it has no cycle)
-     * @param n nth element (n=0 removes nothing, n=1 removes last)
+     * @param n nth element
      */
     public ListNode removeFromEnd(final ListNode head, final int n) {
         if (head == null || n <=0) {
@@ -80,6 +83,18 @@ public class LinkedListLeets {
         }
     }
 
+    /**
+     * - Assume both lists are sorted
+     * - Get rid of edge cases when one of the two list is null
+     * - Maintain one pointer on each least
+     * - Compare numbers pointed to by the two pointers , add smallest to resulting list
+     *   and only advance the pointer that pointed to smallest number, repeat as long as both pointers are not null
+     * - Remember result head and result tail
+     * - Finally, since one list is finish before the other, hook remaining part on to tail
+     * @param list1 first list
+     * @param list2 second list
+     * @return merge list
+     */
     public ListNode mergeSortedLists(final ListNode list1, final ListNode list2) {
         if (list1 == null) {
             return list2;
