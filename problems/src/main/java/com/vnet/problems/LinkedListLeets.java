@@ -79,4 +79,49 @@ public class LinkedListLeets {
             return head;
         }
     }
+
+    public ListNode mergeSortedLists(final ListNode list1, final ListNode list2) {
+        if (list1 == null) {
+            return list2;
+        }
+
+        if (list2 == null) {
+            return list1;
+        }
+
+        ListNode head = null;
+        ListNode p1 = list1;
+        ListNode p2 = list2;
+        ListNode tail = null;
+        while (p1 != null && p2 != null) {
+            if (p1.value < p2.value) {
+                final ListNode newNode = new ListNode(p1.value);
+                if (head == null) {
+                    head = newNode;
+                } else {
+                    tail.next = newNode;
+                }
+                tail = newNode;
+                p1 = p1.next;
+            } else {
+                final ListNode newNode = new ListNode(p2.value);
+                if (head == null) {
+                    head = newNode;
+                } else {
+                    tail.next = newNode;
+                }
+                tail = newNode;
+                p2 = p2.next;
+            }
+        }
+
+        if (p1 == null) {
+            tail.next = p2;
+        }
+        if (p2 == null) {
+            tail.next = p1;
+        }
+
+        return head;
+    }
 }
