@@ -2,6 +2,8 @@ package com.vnet.problems;
 
 import com.vnet.common.VException;
 
+import java.util.List;
+
 public class LeetLinkedList {
     public boolean hasCycle(final ListNode head) {
         ListNode slow = head;
@@ -138,5 +140,46 @@ public class LeetLinkedList {
         }
 
         return head;
+    }
+
+    public ListNode reverse(final ListNode head) {
+        ListNode reversedHead = null;
+        ListNode node = head;
+        while (node != null) {
+            final ListNode newNode = new ListNode(node.value);
+            if (reversedHead != null) {
+                newNode.next = reversedHead;
+            }
+            reversedHead = newNode;
+            node = node.next;
+        }
+        return reversedHead;
+    }
+
+    public boolean isPalindrome(final ListNode head) {
+        int count = 0;
+        ListNode reversed = null;
+        ListNode node = head;
+        while (node != null) {
+            final ListNode newNode = new ListNode(node.value);
+            if (reversed != null) {
+                newNode.next = reversed;
+            }
+            reversed = newNode;
+            node = node.next;
+            count++;
+        }
+        ListNode n1 = head;
+        ListNode n2 = reversed;
+        // will work whether or not there is a middle element
+        final int inspectionCount = count / 2;
+        for (int i=0; i<inspectionCount; i++) {
+            if (n1.value != n2.value) {
+                return false;
+            }
+            n1 = n1.next;
+            n2 = n2.next;
+        }
+        return true;
     }
 }
