@@ -2,7 +2,7 @@ package com.vnet.problems;
 
 import com.vnet.common.VException;
 
-public class LinkedListLeets {
+public class LeetLinkedList {
     public boolean hasCycle(final ListNode head) {
         ListNode slow = head;
         ListNode fast = head == null ? null : head.next;

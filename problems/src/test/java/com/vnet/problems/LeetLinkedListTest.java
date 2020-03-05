@@ -5,10 +5,9 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNull;
 
-public class LinkedListLeetsTest {
-    private final LinkedListLeets solution = new LinkedListLeets();
+public class LeetLinkedListTest {
+    private final LeetLinkedList solution = new LeetLinkedList();
 
     @Test
     public void testCycle() {
