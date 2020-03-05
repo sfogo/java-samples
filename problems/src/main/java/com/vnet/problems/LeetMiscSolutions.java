@@ -1,5 +1,13 @@
 package com.vnet.problems;
 
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 public class LeetMiscSolutions {
     /**
      * Add two numbers given a digit numbers. Lowest digit first.
@@ -67,5 +75,37 @@ public class LeetMiscSolutions {
             }
         }
         return abs;
+    }
+
+    public List<Pair<Integer, Integer>> valuePairs(final int sum, final int[] values) {
+        final List<Pair<Integer, Integer>> indexPairs = indexPairs(sum, values);
+        final List<Pair<Integer, Integer>> pairs = new LinkedList<>();
+        for (final Pair<Integer,Integer> indexPair : indexPairs) {
+            pairs.add(new ImmutablePair<>(values[indexPair.getLeft()], values[indexPair.getRight()]));
+        }
+        return pairs;
+    }
+
+    public List<Pair<Integer, Integer>> indexPairs(final int sum, final int[] values) {
+        if (values == null || values.length == 0) {
+            return new LinkedList<>();
+        }
+
+        final List<Pair<Integer, Integer>> list = new LinkedList<>();
+        // key : difference with value, index where difference is found
+        final Map<Integer, Integer> differences = new HashMap<>();
+        for (int i=0; i<values.length; i++) {
+            // must be two distinct items in array
+            final int diff = sum - values[i];
+            if (diff == 0) {
+                continue;
+            }
+            if (differences.get(values[i]) == null) {
+                differences.put(diff, i);
+            } else {
+                list.add(new ImmutablePair<>(i, differences.get(values[i])));
+            }
+        }
+        return list;
     }
 }
