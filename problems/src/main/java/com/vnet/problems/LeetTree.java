@@ -29,4 +29,22 @@ public class LeetTree {
                 && isBalanced(node.left)
                 && isBalanced(node.right);
     }
+
+    public BinaryTreeNode fromSortedArray(final int[] values) {
+        if (values == null || values.length == 0) {
+            return null;
+        }
+        return create(values, 0, values.length - 1);
+    }
+
+    private BinaryTreeNode create(final int[] values, final int left, final int right) {
+        if (left > right) {
+            return null;
+        }
+
+        final int mid = (left + right) / 2;
+        return new BinaryTreeNode(values[mid],
+                create(values, left, mid-1),
+                create(values, mid + 1, right));
+    }
 }
