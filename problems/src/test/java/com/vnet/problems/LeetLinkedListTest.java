@@ -4,6 +4,8 @@ import com.vnet.common.VException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 import static org.testng.Assert.assertEquals;
 
 public class LeetLinkedListTest {
@@ -172,5 +174,52 @@ public class LeetLinkedListTest {
             node = node.next;
         }
         Assert.assertNull(node);
+    }
+
+    @Test
+    public void testReverse() {
+        final ListNode list = new ListNode(1,
+                new ListNode(2,
+                        new ListNode(3,
+                                new ListNode(4, null))));
+        assertList(solution.reverse(list), new int[] {4,3,2,1});
+    }
+
+    @Test
+    public void testReverseOfOne() {
+        assertList(solution.reverse(new ListNode(1)), new int[] {1});
+    }
+
+    @Test
+    public void testReverseOfTwo() {
+        assertList(solution.reverse(new ListNode(1, new ListNode(2))), new int[] {2,1});
+    }
+
+    @Test
+    public void testPalindrome() {
+        Assert.assertTrue(solution.isPalindrome(new ListNode(1,
+                new ListNode(2,
+                        new ListNode(3,
+                                new ListNode(7,
+                                        new ListNode(3,
+                                                new ListNode(2,
+                                                        new ListNode(1, null)))))))));
+    }
+
+    @Test
+    public void testPalindromeOfOne() {
+        Assert.assertTrue(solution.isPalindrome(new ListNode(1)));
+    }
+
+    @Test
+    public void testPalindromeOfThree() {
+        Assert.assertTrue(solution.isPalindrome(new ListNode(7,
+                new ListNode(8,
+                        new ListNode(7)))));
+    }
+
+    @Test
+    public void testNoPalindrome() {
+        Assert.assertFalse(solution.isPalindrome(new ListNode(7, new ListNode(8))));
     }
 }
