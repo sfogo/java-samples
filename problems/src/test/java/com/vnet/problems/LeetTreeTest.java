@@ -41,4 +41,22 @@ public class LeetTreeTest {
                                 new BinaryTreeNode(4, null,
                                         new BinaryTreeNode(5)))))), 5);
     }
+
+    @Test
+    public void testIsBalanced123() {
+        Assert.assertTrue(tree.isBalanced(new BinaryTreeNode(2,
+                new BinaryTreeNode(1),
+                new BinaryTreeNode(3))));
+    }
+
+    @Test
+    public void testIsBalanced() {
+        Assert.assertTrue(tree.isBalanced(new BinaryTreeNode(0,
+                new BinaryTreeNode(-3,
+                        new BinaryTreeNode(-10),
+                        null),
+                new BinaryTreeNode(9,
+                        new BinaryTreeNode(5),
+                        null))));
+    }
 }
