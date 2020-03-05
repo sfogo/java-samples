@@ -1,8 +1,10 @@
 package com.vnet.problems;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.List;
 import java.util.Random;
 
 public class LeetMiscSolutionsTest {
@@ -74,5 +76,27 @@ public class LeetMiscSolutionsTest {
         final String s = builder.toString();
         System.out.println(s);
         System.out.println(solution.longestSubstringWithoutRepeats(s));
+    }
+
+    @Test
+    public void testSumPairs() {
+        final int[] values = new int[] {-2,1,2,6,5,11,7,9,8,3};
+        final int sum = 9;
+        final List<Pair<Integer,Integer>> list = solution.valuePairs(sum, values);
+        Assert.assertEquals(list.size(), 4);
+        for (final Pair<Integer,Integer> pair : list) {
+            Assert.assertEquals(sum, pair.getLeft() + pair.getRight());
+        }
+    }
+
+    @Test
+    public void testSumIndexPairs() {
+        final int[] values = new int[] {-2,1,2,6,5,11,7,9,8,3};
+        final int sum = 9;
+        final List<Pair<Integer,Integer>> list = solution.indexPairs(sum, values);
+        Assert.assertEquals(list.size(), 4);
+        for (final Pair<Integer,Integer> pair : list) {
+            Assert.assertEquals(sum, values[pair.getLeft()] + values[pair.getRight()]);
+        }
     }
 }
