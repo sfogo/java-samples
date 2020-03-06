@@ -29,4 +29,11 @@ public class FibonacciTest {
         Assert.assertEquals(fibonacci.iterative(9), 55);
         Assert.assertEquals(fibonacci.iterative(9), fibonacci.recursive(9));
     }
+
+    @Test
+    public void testStartAtZero() {
+        final Fibonacci f = new Fibonacci(true);
+        Assert.assertEquals(f.iterative(9), 34);
+        Assert.assertEquals(f.iterative(9), f.recursive(9));
+    }
 }
