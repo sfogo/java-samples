@@ -1,6 +1,16 @@
 package com.vnet.common;
 
 public class Fibonacci {
+    private final boolean startAtZero;
+
+    public Fibonacci(final boolean startAtZero) {
+        this.startAtZero = startAtZero;
+    }
+
+    public Fibonacci() {
+        this(false);
+    }
+
     public int recursive(final int n)  {
         if (n < 0) {
             throw new VException("Invalid value:" + n);
@@ -9,6 +19,9 @@ public class Fibonacci {
     }
 
     private int f(final int n) {
+        if (n == 0) {
+            return startAtZero ? 0 : 1;
+        }
         return n < 2 ? 1 : f(n-1) + f(n-2);
     }
 
@@ -17,7 +30,7 @@ public class Fibonacci {
             throw new VException("Invalid value:" + n);
         }
 
-        int un0 = 1;
+        int un0 = startAtZero ? 0 : 1;
         if (n == 0) {
             return un0;
         }

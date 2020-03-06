@@ -1,13 +1,16 @@
 package com.vnet.problems;
 
+import com.vnet.common.Fibonacci;
 import org.apache.commons.lang3.tuple.Pair;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 
 public class LeetMiscSolutionsTest {
+    final Fibonacci fibonacci = new Fibonacci(true);
     final Random random = new Random(System.currentTimeMillis());
     final LeetMiscSolutions solution = new LeetMiscSolutions();
 
@@ -98,5 +101,26 @@ public class LeetMiscSolutionsTest {
         for (final Pair<Integer,Integer> pair : list) {
             Assert.assertEquals(sum, values[pair.getLeft()] + values[pair.getRight()]);
         }
+    }
+
+    @Test
+    public void testParenthesis() {
+        final List<String> list = solution.generateParenthesis(3);
+        Assert.assertEquals(list.size(), 5);
+        Assert.assertEquals(new HashSet<>(list).size(), fibonacci.iterative(5));
+    }
+
+    @Test
+    public void testParenthesisWithFour() {
+        final List<String> list = solution.generateParenthesis(4);
+        Assert.assertEquals(list.size(), 13);
+        Assert.assertEquals(new HashSet<>(list).size(), fibonacci.iterative(7));
+    }
+
+    @Test
+    public void testParenthesisWithFive() {
+        final List<String> list = solution.generateParenthesis(5);
+        Assert.assertEquals(list.size(), 34);
+        Assert.assertEquals(new HashSet<>(list).size(), fibonacci.recursive(9));
     }
 }

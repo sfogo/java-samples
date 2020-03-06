@@ -4,9 +4,11 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class LeetMiscSolutions {
     /**
@@ -107,5 +109,29 @@ public class LeetMiscSolutions {
             }
         }
         return list;
+    }
+
+    public List<String> generateParenthesis(final int n) {
+        if (n <= 0) {
+            return new LinkedList<>();
+        }
+
+        if (n == 1) {
+            final List<String> list = new LinkedList<>();
+            list.add("()");
+            return list;
+        }
+
+        final List<String> list = generateParenthesis(n-1);
+        final Set<String> set = new HashSet<>();
+        for (final String s : list) {
+            // use a set since adding () may yield duplicates
+            // from different entries (or from same entry for that matter)
+            set.add("()" + s);
+            set.add(s + "()");
+            // Adding at both ends does not create duplicates
+            set.add("(" + s + ")");
+        }
+        return new LinkedList<>(set);
     }
 }
