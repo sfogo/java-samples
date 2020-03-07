@@ -205,12 +205,63 @@ public class LeetMiscSolutions {
         }
     }
 
-    public String zigzagConvert(final String s, final int rows) {
-        if (s == null || s.length() == 0) {
+    public String zigzagConvert(final String s, final int numRows) {
+        if (s == null || s.length() == 0 || numRows == 1) {
             return s;
         }
 
         final StringBuilder builder = new StringBuilder();
+        final int step2 = numRows - 2;
+
+        // Number of sections whose size is rows + step2 = 2*(rows-1)
+        // last one may be truncated
+        int count = s.length() / (numRows+step2);
+        if (s.length() % (numRows+step2) > 0) {
+            count++;
+        }
+
+        // Start : Offset = 0
+        for (int i=0; i<count; i++) {
+            final int index = i*(numRows+step2);
+            if (index < s.length()) {
+                builder.append(s.charAt(index));
+            }
+        }
+
+        // Middle : offset 1 to rows-2
+        for (int offset = 1; offset<=numRows-2; offset++) {
+            for (int i=0; i<count; i++) {
+                // Letter in section of size rows
+                int index = i*(numRows+step2) + offset;
+                if (index < s.length()) {
+                    builder.append(s.charAt(index));
+                }
+                // Take letter is section of size rows-2 backwards
+                index = (i+1)*(numRows+step2) - offset;
+                if (index < s.length()) {
+                    builder.append(s.charAt(index));
+                }
+            }
+        }
+
+        // End : Offset = rows-1
+        for (int i=0; i<count; i++) {
+            final int index = i*(numRows+step2) + (numRows - 1);
+            if (index < s.length()) {
+                builder.append(s.charAt(index));
+            }
+        }
+
+        return builder.toString();
+    }
+
+    public List<String> zigzagLines(final String s, final int rows) {
+        final List<String> lines = new LinkedList<>();
+       if (s == null || s.length() == 0 || rows == 1) {
+           lines.add(s);
+           return lines;
+        }
+
         final int step2 = rows - 2;
 
         // Number of sections whose size is rows + step2 = 2*(rows-1)
@@ -221,37 +272,95 @@ public class LeetMiscSolutions {
         }
 
         // Start : Offset = 0
+        StringBuilder line = new StringBuilder();
         for (int i=0; i<count; i++) {
             final int index = i*(rows+step2);
             if (index < s.length()) {
-                builder.append(s.charAt(index));
+                if (i>0) {
+                    line.append(padding(step2));
+                }
+                line.append(s.charAt(index));
             }
         }
+        lines.add(line.toString());
 
         // Middle : offset 1 to rows-2
         for (int offset = 1; offset<=rows-2; offset++) {
+            line = new StringBuilder();
             for (int i=0; i<count; i++) {
                 // Letter in section of size rows
                 int index = i*(rows+step2) + offset;
                 if (index < s.length()) {
-                    builder.append(s.charAt(index));
+                    line.append(s.charAt(index));
                 }
                 // Take letter is section of size rows-2 backwards
                 index = (i+1)*(rows+step2) - offset;
                 if (index < s.length()) {
-                    builder.append(s.charAt(index));
+                    line.append(padding(step2-offset));
+                    line.append(s.charAt(index));
+                    line.append(padding(offset-1));
                 }
             }
+            lines.add(line.toString());
         }
 
         // End : Offset = rows-1
+        line = new StringBuilder();
         for (int i=0; i<count; i++) {
             final int index = i*(rows+step2) + (rows - 1);
             if (index < s.length()) {
-                builder.append(s.charAt(index));
+                if (i>0) {
+                    line.append(padding(step2));
+                }
+                line.append(s.charAt(index));
             }
         }
+        lines.add(line.toString());
 
-        return builder.toString();
+        return lines;
+    }
+
+    /**
+     * https://leetcode.com/problems/rotated-digits/submissions/
+     * @param N max value
+     * @return number of accepted numbers
+     */
+    public int rotatedDigits(final int N) {
+        final int max = 10000;
+        if (N<0 || N>max) {
+            throw new IllegalArgumentException("Invalid value:" + N);
+        }
+
+        int count = 0;
+        for (int i=1; i<=N; i++) {
+            int nbDigits;
+            if (i<10) {
+                nbDigits = 1;
+            } else if (i<100) {
+                nbDigits = 2;
+            } else if (i<1000) {
+                nbDigits = 3;
+            } else {
+                nbDigits = 4;
+            }
+
+            int value = i;
+            boolean candidate = true;
+            int selfCount = 0;
+            for (int p=1; p<=nbDigits && candidate; p++) {
+                final int mod = value % 10;
+                if (mod==3 || mod==4 || mod==7) {
+                    candidate = false;
+                } else if (mod==0 || mod==1 || mod==8) {
+                    selfCount++;
+                }
+                value = value / 10;
+            }
+
+            if (candidate && selfCount != nbDigits) {
+                count++;
+            }
+        }
+        return count;
     }
 }
