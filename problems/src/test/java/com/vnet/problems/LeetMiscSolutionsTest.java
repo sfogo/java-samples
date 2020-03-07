@@ -137,4 +137,16 @@ public class LeetMiscSolutionsTest {
             previousSize = list.size();
         }
     }
+
+    @Test
+    public void testZigzag4() {
+        final String z = solution.zigzagConvert("PAYPALISHIRING", 4);
+        Assert.assertEquals(z, "PINALSIGYAHRPI");
+    }
+
+    @Test
+    public void testZigzag3() {
+        final String z = solution.zigzagConvert("PAYPALISHIRING", 3);
+        Assert.assertEquals(z, "PAHNAPLSIIGYIR");
+    }
 }
