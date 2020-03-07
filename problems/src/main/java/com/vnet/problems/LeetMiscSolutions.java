@@ -4,11 +4,9 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class LeetMiscSolutions {
     /**
@@ -112,32 +110,8 @@ public class LeetMiscSolutions {
     }
 
     public List<String> generateParenthesis(final int n) {
-        if (n <= 0) {
-            return new LinkedList<>();
-        }
-
-        if (n == 1) {
-            final List<String> list = new LinkedList<>();
-            list.add("()");
-            return list;
-        }
-
-        final List<String> list = generateParenthesis(n-1);
-        final Set<String> set = new HashSet<>();
-        for (final String s : list) {
-            // use a set since adding () may yield duplicates
-            // from different entries (or from same entry for that matter)
-            set.add("()" + s);
-            set.add(s + "()");
-            // Adding at both ends does not create duplicates
-            set.add("(" + s + ")");
-        }
-        return new LinkedList<>(set);
-    }
-
-    public List<String> genParenthesis(final int n) {
         final List<String> values = new LinkedList<>();
-        genParenthesis(values, 0, 0, n, "");
+        generateParenthesis(values, 0, 0, n, "");
         return values;
     }
 
@@ -149,18 +123,85 @@ public class LeetMiscSolutions {
      * @param n number of parenthesis pairs
      * @param current current value
      */
-    void genParenthesis(final List<String> values, final int open, final int closed, final int n, final String current) {
+    private void generateParenthesis(
+            final List<String> values,
+            final int open,
+            final int closed,
+            final int n,
+            final String current) {
         if (current.length() == 2*n) {
             values.add(current);
             return;
         }
 
         if (open < n) {
-            genParenthesis(values, open+1, closed, n, current + "(");
+            generateParenthesis(values, open+1, closed, n, current + "(");
         }
 
         if (closed < open) {
-            genParenthesis(values, open, closed+1, n, current + ")");
+            generateParenthesis(values, open, closed+1, n, current + ")");
+        }
+    }
+
+    private static String padding(final int size) {
+        final StringBuilder builder = new StringBuilder();
+        for (int i=0; i<size; i++) {
+            builder.append(" ");
+        }
+        return builder.toString();
+    }
+
+    public List<String> gen2Parenthesis(final int n) {
+        return new ParenthesisGenerator().generate(n);
+    }
+
+    /**
+     * Same thing using an extra class : pass only open and closed counts
+     * BUT you need to adjust current accordingly
+     */
+    private static class ParenthesisGenerator {
+        private LinkedList<Character> current;
+        private List<String> values;
+        private int nbPairs;
+
+        /**
+         * generate
+         * @param open current number of open parenthesis
+         * @param closed current number of closed parenthesis
+         */
+        private void generate(final int open, final int closed) {
+            if (current.size() == 2*nbPairs) {
+                values.add(currentAsString());
+                return;
+            }
+
+            if (open < nbPairs) {
+                current.add('(');
+                generate(open+1, closed);
+                current.pollLast();
+            }
+
+            if (closed < open) {
+                current.add(')');
+                generate(open, closed+1);
+                current.pollLast();
+            }
+        }
+
+        private String currentAsString() {
+            final StringBuilder builder = new StringBuilder();
+            for (final Character c : current) {
+                builder.append(c);
+            }
+            return builder.toString();
+        }
+
+        List<String> generate(final int n) {
+            values = new LinkedList<>();
+            current = new LinkedList<>();
+            nbPairs = n;
+            generate(0, 0);
+            return values;
         }
     }
 }
