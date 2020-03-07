@@ -204,4 +204,54 @@ public class LeetMiscSolutions {
             return values;
         }
     }
+
+    public String zigzagConvert(final String s, final int rows) {
+        if (s == null || s.length() == 0) {
+            return s;
+        }
+
+        final StringBuilder builder = new StringBuilder();
+        final int step2 = rows - 2;
+
+        // Number of sections whose size is rows + step2 = 2*(rows-1)
+        // last one may be truncated
+        int count = s.length() / (rows+step2);
+        if (s.length() % (rows+step2) > 0) {
+            count++;
+        }
+
+        // Start : Offset = 0
+        for (int i=0; i<count; i++) {
+            final int index = i*(rows+step2);
+            if (index < s.length()) {
+                builder.append(s.charAt(index));
+            }
+        }
+
+        // Middle : offset 1 to rows-2
+        for (int offset = 1; offset<=rows-2; offset++) {
+            for (int i=0; i<count; i++) {
+                // Letter in section of size rows
+                int index = i*(rows+step2) + offset;
+                if (index < s.length()) {
+                    builder.append(s.charAt(index));
+                }
+                // Take letter is section of size rows-2 backwards
+                index = (i+1)*(rows+step2) - offset;
+                if (index < s.length()) {
+                    builder.append(s.charAt(index));
+                }
+            }
+        }
+
+        // End : Offset = rows-1
+        for (int i=0; i<count; i++) {
+            final int index = i*(rows+step2) + (rows - 1);
+            if (index < s.length()) {
+                builder.append(s.charAt(index));
+            }
+        }
+
+        return builder.toString();
+    }
 }
