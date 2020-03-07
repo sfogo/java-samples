@@ -319,4 +319,48 @@ public class LeetMiscSolutions {
 
         return lines;
     }
+
+    /**
+     * https://leetcode.com/problems/rotated-digits/submissions/
+     * @param N max value
+     * @return number of accepted numbers
+     */
+    public int rotatedDigits(final int N) {
+        final int max = 10000;
+        if (N<0 || N>max) {
+            throw new IllegalArgumentException("Invalid value:" + N);
+        }
+
+        int count = 0;
+        for (int i=1; i<=N; i++) {
+            int nbDigits;
+            if (i<10) {
+                nbDigits = 1;
+            } else if (i<100) {
+                nbDigits = 2;
+            } else if (i<1000) {
+                nbDigits = 3;
+            } else {
+                nbDigits = 4;
+            }
+
+            int value = i;
+            boolean candidate = true;
+            int selfCount = 0;
+            for (int p=1; p<=nbDigits && candidate; p++) {
+                final int mod = value % 10;
+                if (mod==3 || mod==4 || mod==7) {
+                    candidate = false;
+                } else if (mod==0 || mod==1 || mod==8) {
+                    selfCount++;
+                }
+                value = value / 10;
+            }
+
+            if (candidate && selfCount != nbDigits) {
+                count++;
+            }
+        }
+        return count;
+    }
 }

@@ -165,4 +165,9 @@ public class LeetMiscSolutionsTest {
             System.out.println(line);
         }
     }
+
+    @Test
+    public void testRotateDigits() {
+        Assert.assertEquals(solution.rotatedDigits(10), 4);
+    }
 }
