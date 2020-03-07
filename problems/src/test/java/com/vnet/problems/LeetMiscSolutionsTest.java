@@ -107,26 +107,34 @@ public class LeetMiscSolutionsTest {
     public void testParenthesis() {
         final List<String> list = solution.generateParenthesis(3);
         Assert.assertEquals(list.size(), 5);
-        Assert.assertEquals(new HashSet<>(list).size(), fibonacci.iterative(5));
     }
 
     @Test
     public void testParenthesisWithFour() {
         final List<String> list = solution.generateParenthesis(4);
-        Assert.assertEquals(list.size(), 13);
-        Assert.assertEquals(new HashSet<>(list).size(), fibonacci.iterative(7));
+        Assert.assertEquals(list.size(), 14);
     }
 
     @Test
     public void testParenthesisWithFive() {
         final List<String> list = solution.generateParenthesis(5);
-        Assert.assertEquals(list.size(), 34);
-        Assert.assertEquals(new HashSet<>(list).size(), fibonacci.recursive(9));
+        Assert.assertEquals(list.size(), 42);
     }
 
     @Test
-    public void testParenthesisWith2ndMethod() {
-        final List<String> list = solution.genParenthesis(3);
-        Assert.assertEquals(list.size(), 5);
+    public void testParenthesisWithGenerator() {
+        final List<String> list1 = solution.generateParenthesis(4);
+        final List<String> list2 = solution.gen2Parenthesis(4);
+        Assert.assertEquals(list1.size(), list2.size());
+    }
+
+    @Test
+    public void testViewParenthesisCounts() {
+        int previousSize = 0;
+        for (int i=1; i<=10; i++) {
+            final List<String> list = solution.generateParenthesis(i);
+            System.out.println(i + ":" + solution.generateParenthesis(i).size() + (i == 1 ? "" : " r=" + 1.0f * list.size() / previousSize));
+            previousSize = list.size();
+        }
     }
 }
