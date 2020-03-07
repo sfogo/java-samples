@@ -149,4 +149,20 @@ public class LeetMiscSolutionsTest {
         final String z = solution.zigzagConvert("PAYPALISHIRING", 3);
         Assert.assertEquals(z, "PAHNAPLSIIGYIR");
     }
+
+    @Test
+    public void printZigzag4() {
+        final List<String> lines = solution.zigzagLines("PAYPALISHIRING", 4);
+        for (final String line : lines) {
+            System.out.println(line);
+        }
+    }
+
+    @Test
+    public void printZigzag5() {
+        final List<String> lines = solution.zigzagLines("DOYOUHAPPENTOKNOWIFPAYPALISHIRING?", 5);
+        for (final String line : lines) {
+            System.out.println(line);
+        }
+    }
 }
