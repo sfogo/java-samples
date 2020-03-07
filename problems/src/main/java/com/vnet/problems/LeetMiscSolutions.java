@@ -134,4 +134,33 @@ public class LeetMiscSolutions {
         }
         return new LinkedList<>(set);
     }
+
+    public List<String> genParenthesis(final int n) {
+        final List<String> values = new LinkedList<>();
+        genParenthesis(values, 0, 0, n, "");
+        return values;
+    }
+
+    /**
+     * Pass everything in recurring call
+     * @param values accumulating result
+     * @param open current number of open parenthesis
+     * @param closed current number of closed parenthesis
+     * @param n number of parenthesis pairs
+     * @param current current value
+     */
+    void genParenthesis(final List<String> values, final int open, final int closed, final int n, final String current) {
+        if (current.length() == 2*n) {
+            values.add(current);
+            return;
+        }
+
+        if (open < n) {
+            genParenthesis(values, open+1, closed, n, current + "(");
+        }
+
+        if (closed < open) {
+            genParenthesis(values, open, closed+1, n, current + ")");
+        }
+    }
 }

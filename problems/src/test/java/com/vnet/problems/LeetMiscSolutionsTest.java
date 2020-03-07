@@ -123,4 +123,10 @@ public class LeetMiscSolutionsTest {
         Assert.assertEquals(list.size(), 34);
         Assert.assertEquals(new HashSet<>(list).size(), fibonacci.recursive(9));
     }
+
+    @Test
+    public void testParenthesisWith2ndMethod() {
+        final List<String> list = solution.genParenthesis(3);
+        Assert.assertEquals(list.size(), 5);
+    }
 }
