@@ -4,8 +4,6 @@ import com.vnet.common.VException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.List;
-
 import static org.testng.Assert.assertEquals;
 
 public class LeetLinkedListTest {
@@ -221,5 +219,48 @@ public class LeetLinkedListTest {
     @Test
     public void testNoPalindrome() {
         Assert.assertFalse(solution.isPalindrome(new ListNode(7, new ListNode(8))));
+    }
+
+    @Test
+    public void testSwapEveryTwoNodes() {
+        final ListNode node = new ListNode(1,
+                new ListNode(2,
+                        new ListNode(3,
+                                new ListNode(4))));
+        final ListNode head = solution.swapEveryTwoNodesRecursively(node);
+        Assert.assertEquals(head.value, 2);
+        Assert.assertEquals(head.next.value, 1);
+        Assert.assertEquals(head.next.next.value, 4);
+        Assert.assertEquals(head.next.next.next.value, 3);
+    }
+
+    @Test
+    public void testSwapEveryTwoNodesIteratively() {
+        final ListNode node = new ListNode(1,
+                new ListNode(2,
+                        new ListNode(3,
+                                new ListNode(4))));
+        final ListNode head = solution.swapEveryTwoNodesIteratively(node);
+        Assert.assertEquals(head.value, 2);
+        Assert.assertEquals(head.next.value, 1);
+        Assert.assertEquals(head.next.next.value, 4);
+        Assert.assertEquals(head.next.next.next.value, 3);
+    }
+
+    @Test
+    public void test2SwapEveryTwoNodesIteratively() {
+        final ListNode node = new ListNode(1,
+                new ListNode(2,
+                        new ListNode(3,
+                                new ListNode(4,
+                                        new ListNode(5,
+                                                new ListNode(6))))));
+        final ListNode head = solution.swapEveryTwoNodesIteratively(node);
+        Assert.assertEquals(head.value, 2);
+        Assert.assertEquals(head.next.value, 1);
+        Assert.assertEquals(head.next.next.value, 4);
+        Assert.assertEquals(head.next.next.next.value, 3);
+        Assert.assertEquals(head.next.next.next.next.value, 6);
+        Assert.assertEquals(head.next.next.next.next.next.value, 5);
     }
 }
