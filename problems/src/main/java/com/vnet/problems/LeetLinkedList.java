@@ -2,8 +2,6 @@ package com.vnet.problems;
 
 import com.vnet.common.VException;
 
-import java.util.List;
-
 public class LeetLinkedList {
     public boolean hasCycle(final ListNode head) {
         ListNode slow = head;
@@ -181,5 +179,38 @@ public class LeetLinkedList {
             n2 = n2.next;
         }
         return true;
+    }
+
+    public ListNode swapEveryTwoNodesRecursively(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        final ListNode a = head;
+        final ListNode b = head.next;
+        final ListNode c = head.next.next;
+        head = b;
+        b.next = a;
+        a.next = swapEveryTwoNodesRecursively(c);
+        return head;
+    }
+
+    public ListNode swapEveryTwoNodesIteratively(final ListNode head) {
+        final ListNode out = head == null || head.next == null ? head : head.next;
+        ListNode parent = null;
+        ListNode position = head;
+        while (position != null && position.next != null) {
+            ListNode a = position;
+            ListNode b = position.next;
+            ListNode c = position.next.next;
+            b.next = a;
+            a.next = c;
+            // next two nodes
+            if (parent != null) {
+                parent.next = b;
+            }
+            position = c;
+            parent = a;
+        }
+        return out;
     }
 }
