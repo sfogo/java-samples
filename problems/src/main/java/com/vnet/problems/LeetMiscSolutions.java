@@ -484,4 +484,58 @@ public class LeetMiscSolutions {
         }
         return result;
     }
+
+    public boolean isValidBrackets(String s) {
+        if (s == null) {
+            return false;
+        }
+
+        if (s.length() == 0) {
+            return true;
+        }
+
+        if (s.length() % 2 == 1) {
+            return false;
+        }
+
+        // Last Open Parenthesis '(' index
+        int lastOpenP = -1;
+        // Last Open Accolade '{' index
+        int lastOpenA = -1;
+        // Last open square '[' Bracket
+        int lastOpenS = -1;
+        // Find First Closing item
+        int open = -1;
+        int closed = -1;
+
+        boolean stop = false;
+        for (int i=0; i<s.length() && !stop; i++) {
+            final char c = s.charAt(i);
+            if (c == '(') {
+                lastOpenP = i;
+            } else if (c == '{') {
+                lastOpenA = i;
+            } else if (c == '[') {
+                lastOpenS = i;
+            } else {
+                stop = true;
+                closed = i;
+                if (c == ')') {
+                    open = lastOpenP;
+                } else if (c == '}') {
+                    open = lastOpenA;
+                } else if (c == ']') {
+                    open = lastOpenS;
+                }
+            }
+        }
+        if (open >= 0 && closed > open) {
+            // examine String inside open.closed pair
+            final String inside = s.substring(open+1, closed);
+            final String outside = s.substring(0, open) + s.substring(1+closed);
+            return isValidBrackets(inside) && isValidBrackets(outside);
+        } else {
+            return false;
+        }
+    }
 }
