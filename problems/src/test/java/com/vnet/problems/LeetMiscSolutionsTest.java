@@ -199,4 +199,20 @@ public class LeetMiscSolutionsTest {
         Assert.assertEquals(solution.add("101", "9"), "110");
         Assert.assertEquals(solution.add("11", "22"), "33");
     }
+
+    @Test
+    public void testValidParenthesis() {
+        final boolean b = solution.isValidBrackets("([)]");
+        Assert.assertFalse(b);
+    }
+
+    @Test
+    public void testValidParenthesis2() {
+        Assert.assertTrue(solution.isValidBrackets("{[()()()]}"));
+        Assert.assertTrue(solution.isValidBrackets("()"));
+        Assert.assertTrue(solution.isValidBrackets("{}"));
+        Assert.assertTrue(solution.isValidBrackets("[]"));
+        Assert.assertTrue(solution.isValidBrackets("()[]{}"));
+        Assert.assertTrue(solution.isValidBrackets("[[[[]]]]"));
+    }
 }
