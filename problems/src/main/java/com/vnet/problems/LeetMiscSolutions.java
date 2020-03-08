@@ -363,4 +363,125 @@ public class LeetMiscSolutions {
         }
         return count;
     }
+
+    /**
+     * Multiply 2 numbers given as string. DO NOT convert these numbers to integer values
+     * @param num1 1st number
+     * @param num2 2nd number
+     * @return string
+     */
+    public String multiply(final String num1, final String num2) {
+        if (num1 == null || num1.length() == 0 || num2 == null || num2.length() == 0) {
+            throw new IllegalArgumentException("Invalid input");
+        }
+
+        int result = 0;
+        int pow1 = 1;
+        for (int i=0; i<num1.length(); i++) {
+            final int d1 = num1.charAt(num1.length() - 1 - i) - '0';
+            int s = 0;
+            int carry = 0;
+            int pow2 = 1;
+            for (int j=0; j<num2.length(); j++) {
+                final int d2 = num2.charAt(num2.length() - j - 1) - '0';
+                final int p = d1*d2 + carry;
+                if (j==num2.length()-1) {
+                    s += (p * pow2);
+                } else {
+                    s += (p % 10) * pow2;
+                }
+                carry = p / 10;
+                pow2 = 10*pow2;
+            }
+            result += (pow1 * s);
+            pow1 = 10*pow1;
+        }
+
+        return String.valueOf(result);
+    }
+
+    public String add(final String num1, final String num2) {
+        if (num1 == null || num1.length() == 0 || num2 == null || num2.length() == 0) {
+            throw new IllegalArgumentException("Invalid input");
+        }
+        StringBuilder result = new StringBuilder();
+        int carry = 0;
+
+        int i=0;
+        while (i<num1.length() && i<num2.length()) {
+            final int sum = (num1.charAt(num1.length() - 1 - i) - '0') + (num2.charAt(num2.length() - 1 - i) - '0') + carry;
+            result.insert(0, sum % 10);
+            carry = sum / 10;
+            i++;
+        }
+
+        // will enter at most one of the two loops
+        // when num1 and num2 lengths differ
+
+        while (i<num1.length()) {
+            final int sum = (num1.charAt(num1.length() - 1 - i) - '0') + carry;
+            result.insert(0, sum % 10);
+            carry = sum / 10;
+            i++;
+        }
+
+        while (i<num2.length()) {
+            final int sum = (num2.charAt(num2.length() - 1 - i) - '0') + carry;
+            result.insert(0, sum % 10);
+            carry = sum / 10;
+            i++;
+        }
+
+        if (carry > 0) {
+            result.insert(0, carry);
+        }
+
+        return result.toString();
+    }
+
+    /**
+     * https://leetcode.com/problems/multiply-strings/
+     * @param num1 1st number
+     * @param num2 2nd number
+     * @return string
+     */
+    public String multiply2(final String num1, final String num2) {
+        if (num1 == null || num1.length() == 0 || num2 == null || num2.length() == 0) {
+            throw new IllegalArgumentException("Invalid input");
+        }
+
+        if ("0".equals(num1) || "0".equals(num2)) {
+            return "0";
+        }
+
+        String result = "";
+        int shift = 0;
+        for (int i=0; i<num1.length(); i++) {
+            final int d1 = num1.charAt(num1.length() - 1 - i) - '0';
+            final StringBuilder builder = new StringBuilder();
+            int carry = 0;
+            for (int j=0; j<num2.length(); j++) {
+                final int d2 = num2.charAt(num2.length() - j - 1) - '0';
+                final int p = d1*d2 + carry;
+                if (j==num2.length()-1) {
+                    builder.insert(0, p);
+                } else {
+                    builder.insert(0, p%10);
+                }
+                carry = p / 10;
+            }
+
+            // Multiply by 10 shift times
+            if (result.isEmpty()) {
+                result = builder.toString();
+            } else {
+                for (int s = 0; s < shift; s++) {
+                    builder.append("0");
+                }
+                result = add(result, builder.toString());
+            }
+            shift++;
+        }
+        return result;
+    }
 }

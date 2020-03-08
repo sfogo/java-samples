@@ -170,4 +170,33 @@ public class LeetMiscSolutionsTest {
     public void testRotateDigits() {
         Assert.assertEquals(solution.rotatedDigits(10), 4);
     }
+
+    @Test
+    public void testMultiply() {
+        Assert.assertEquals(solution.multiply("86", "127"), "10922");
+        Assert.assertEquals(solution.multiply("86", "127"), solution.multiply("127", "86"));
+        Assert.assertEquals(solution.multiply("123", "456"), "56088");
+        Assert.assertEquals(solution.multiply("1", "9876"), "9876");
+        Assert.assertEquals(solution.multiply("1", "9876"), solution.multiply("9876", "1"));
+        Assert.assertEquals(solution.multiply("1999", "1999"), "3996001");
+    }
+
+    @Test
+    public void testMultiply2() {
+        Assert.assertEquals(solution.multiply2("86", "127"), "10922");
+    }
+
+    @Test
+    public void testBigMultiply2() {
+        Assert.assertEquals(solution.multiply2("123456789", "987654321"), "121932631112635269");
+        Assert.assertEquals(solution.multiply2("1999", "1999"), "3996001");
+        Assert.assertEquals(solution.multiply2("199", "199"), "39601");
+    }
+
+    @Test
+    public void testAdd() {
+        Assert.assertEquals(solution.add("1127", "86"), "1213");
+        Assert.assertEquals(solution.add("101", "9"), "110");
+        Assert.assertEquals(solution.add("11", "22"), "33");
+    }
 }
