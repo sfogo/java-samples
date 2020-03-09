@@ -215,4 +215,14 @@ public class LeetMiscSolutionsTest {
         Assert.assertTrue(solution.isValidBrackets("()[]{}"));
         Assert.assertTrue(solution.isValidBrackets("[[[[]]]]"));
     }
+
+    @Test
+    public void testCountAndSay4() {
+        Assert.assertEquals(solution.countAndSay(4), "1211");
+    }
+
+    @Test
+    public void testCountAndSay6() {
+        Assert.assertEquals(solution.countAndSay(6), "312211");
+    }
 }

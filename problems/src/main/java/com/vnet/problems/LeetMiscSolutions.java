@@ -538,4 +538,31 @@ public class LeetMiscSolutions {
             return false;
         }
     }
+
+    /**
+     * https://leetcode.com/problems/count-and-say/
+     * @param n level
+     * @return what you say
+     */
+    public String countAndSay(final int n) {
+        String s = "1";
+        for (int i=1; i<n; i++) {
+            final StringBuilder builder = new StringBuilder();
+            char previousChar = s.charAt(0);
+            int count = 1;
+            for (int j=1; j<s.length(); j++) {
+                final char c = s.charAt(j);
+                if (c == previousChar) {
+                    count++;
+                } else {
+                    builder.append(count).append(previousChar);
+                    count = 1;
+                }
+                previousChar = c;
+            }
+            builder.append(count).append(previousChar);
+            s = builder.toString();
+        }
+        return s;
+    }
 }
