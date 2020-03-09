@@ -235,4 +235,14 @@ public class LeetMiscSolutionsTest {
             previousLength = s.length();
         }
     }
+
+    @Test
+    public void testIsAnagram() {
+        Assert.assertTrue(solution.isAnagram("anagram", "nagaram"));
+    }
+
+    @Test
+    public void testIsAnagram2() {
+        Assert.assertFalse(solution.isAnagram("anagram", "nagaran"));
+    }
 }
