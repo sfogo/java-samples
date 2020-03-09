@@ -227,7 +227,7 @@ public class LeetMiscSolutionsTest {
     }
 
     @Test
-    public void viewCountAndSayUntil10() {
+    public void viewCountAndSayUntil16() {
         for (int i=1; i<16; i++) {
             final String s = solution.countAndSay(i);
             System.out.println(s + " length:" + s.length());
