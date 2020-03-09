@@ -565,4 +565,41 @@ public class LeetMiscSolutions {
         }
         return s;
     }
+
+    /**
+     * https://leetcode.com/problems/valid-anagram/
+     * @param s string one
+     * @param t string two
+     * @return true is t is anagram of s
+     */
+    public boolean isAnagram(final String s, final String t) {
+        if (s == null || t == null) {
+            return false;
+        }
+
+        if (s.length() != t.length()) {
+            return false;
+        }
+
+        final Map<Character,Integer> sMap = new HashMap<>();
+        final Map<Character,Integer> tMap = new HashMap<>();
+        for (int i=0; i<s.length(); i++) {
+            sMap.merge(s.charAt(i), 1, Integer::sum);
+            tMap.merge(t.charAt(i), 1, Integer::sum);
+        }
+        if (sMap.size() != tMap.size()) {
+            return false;
+        }
+
+        for (final Character c : sMap.keySet()) {
+            if (tMap.get(c) == null) {
+                return false;
+            }
+            if (!tMap.get(c).equals(sMap.get(c))) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }
