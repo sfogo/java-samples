@@ -228,9 +228,11 @@ public class LeetMiscSolutionsTest {
 
     @Test
     public void viewCountAndSayUntil16() {
+        int previousLength = 1;
         for (int i=1; i<16; i++) {
             final String s = solution.countAndSay(i);
-            System.out.println(s + " length:" + s.length());
+            System.out.println(s + " length:" + s.length() + " r:" + (1.0 * s.length() / previousLength));
+            previousLength = s.length();
         }
     }
 }
