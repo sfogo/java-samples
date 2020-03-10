@@ -245,4 +245,49 @@ public class LeetMiscSolutionsTest {
     public void testIsAnagram2() {
         Assert.assertFalse(solution.isAnagram("anagram", "nagaran"));
     }
+
+    @Test
+    public void testOddEvenListOdd() {
+        final ListNode head = new ListNode(1,
+                new ListNode(2,
+                        new ListNode(3,
+                                new ListNode(4,
+                                        new ListNode(5)))));
+        final ListNode node = solution.oddEvenList(head);
+        Assert.assertEquals(node.value, 1);
+        Assert.assertEquals(node.next.value, 3);
+        Assert.assertEquals(node.next.next.value, 5);
+        Assert.assertEquals(node.next.next.next.value, 2);
+        Assert.assertEquals(node.next.next.next.next.value, 4);
+    }
+
+    @Test
+    public void testOddEvenListEven() {
+        final ListNode head = new ListNode(1,
+                new ListNode(2,
+                        new ListNode(3,
+                                new ListNode(4,
+                                        new ListNode(5,
+                                                new ListNode(6))))));
+        final ListNode node = solution.oddEvenList(head);
+        Assert.assertEquals(node.value, 1);
+        Assert.assertEquals(node.next.value, 3);
+        Assert.assertEquals(node.next.next.value, 5);
+        Assert.assertEquals(node.next.next.next.value, 2);
+        Assert.assertEquals(node.next.next.next.next.value, 4);
+        Assert.assertEquals(node.next.next.next.next.next.value, 6);
+    }
+
+    @Test
+    public void testOddEvenListEdgeCases() {
+        Assert.assertNull(solution.oddEvenList(null));
+        ListNode node = solution.oddEvenList(new ListNode(1));
+        Assert.assertEquals(node.value, 1);
+        Assert.assertNull(node.next);
+        node = solution.oddEvenList(new ListNode(1, new ListNode(2, new ListNode(3))));
+        Assert.assertEquals(node.value, 1);
+        Assert.assertEquals(node.next.value, 3);
+        Assert.assertEquals(node.next.next.value, 2);
+        Assert.assertNull(node.next.next.next);
+    }
 }

@@ -602,4 +602,29 @@ public class LeetMiscSolutions {
 
         return true;
     }
+
+    public ListNode oddEvenList(ListNode head) {
+        if (head == null) {
+            return null;
+        }
+
+        ListNode odd = head;
+        ListNode oddTail = head;
+        ListNode even = head.next;
+        ListNode evenHead = even;
+        while (odd != null && even != null) {
+            oddTail = odd;
+            odd.next = odd.next.next;
+            even.next = even.next == null ? null : even.next.next;
+            // next two values
+            odd = odd.next;
+            even = even.next;
+        }
+        if (odd == null && even == null) {
+            oddTail.next = evenHead;
+        } else if (odd != null) {
+            odd.next = evenHead;
+        }
+        return head;
+    }
 }
