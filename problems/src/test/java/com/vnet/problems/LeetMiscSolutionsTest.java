@@ -306,4 +306,48 @@ public class LeetMiscSolutionsTest {
         Assert.assertFalse(solution.isPalindrome(347));
         Assert.assertTrue(solution.isPalindrome(1221));
     }
+
+    @Test
+    public void testNextPermutation() {
+        int[] values = {1, 2, 5, 5, 2};
+        solution.nextPermutation(values);
+        Assert.assertEquals(values[0], 1);
+        Assert.assertEquals(values[1], 5);
+        Assert.assertEquals(values[2], 2);
+        Assert.assertEquals(values[3], 2);
+        Assert.assertEquals(values[4], 5);
+
+        values = new int[] {1, 2};
+        solution.nextPermutation(values);
+        Assert.assertEquals(values[0], 2);
+        Assert.assertEquals(values[1], 1);
+
+        values = new int[] {3, 2, 1};
+        solution.nextPermutation(values);
+        Assert.assertEquals(values[0], 1);
+        Assert.assertEquals(values[1], 2);
+        Assert.assertEquals(values[2], 3);
+
+        values = new int[] {1, 2, 3};
+        solution.nextPermutation(values);
+        Assert.assertEquals(values[0], 1);
+        Assert.assertEquals(values[1], 3);
+        Assert.assertEquals(values[2], 2);
+
+        values = new int[] {1, 1, 5};
+        solution.nextPermutation(values);
+        Assert.assertEquals(values[0], 1);
+        Assert.assertEquals(values[1], 5);
+        Assert.assertEquals(values[2], 1);
+    }
+
+    @Test
+    public void testOtherNextPermutation() {
+        int[] values = {1, 4, 3, 2};
+        solution.nextPermutation(values);
+        Assert.assertEquals(values[0], 2);
+        Assert.assertEquals(values[1], 1);
+        Assert.assertEquals(values[2], 3);
+        Assert.assertEquals(values[3], 4);
+    }
 }
