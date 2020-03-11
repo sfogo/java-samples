@@ -674,4 +674,50 @@ public class LeetMiscSolutions {
         }
         return x == reversed;
     }
+
+    /**
+     * https://leetcode.com/problems/next-permutation/
+     * Return permutation is same array
+     * @param nums array of numbers
+     */
+    public void nextPermutation(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return;
+        }
+        // Find the longest decreasing sequence on the right hand side
+        int i = nums.length - 1;
+        while (i > 0 && nums[i-1] >= nums[i]) {
+            i--;
+        }
+
+        // if i is zero then we already are at the last combination
+        // but the specs is asking to return its reverse : next of 321 is 123
+        if (i > 0) {
+            // i is the index after where longest decreasing sequence starts :
+            // Longest deceasing sequence is from index i to index length-1
+            // In that sequence, find (starting from right) the first digit that
+            // is strictly higher than nums[i-1], swap them then reverse that sequence
+            int j = nums.length - 1;
+            while (j >= i) {
+                if (nums[j] > nums[i - 1]) {
+                    final int tmp = nums[j];
+                    nums[j] = nums[i - 1];
+                    nums[i - 1] = tmp;
+                    break;
+                }
+                j--;
+            }
+        }
+
+        // Reverse values from i to Length-1
+        int left = i;
+        int right = nums.length-1;
+        while (right > left) {
+            final int tmp = nums[right];
+            nums[right] = nums[left];
+            nums[left] = tmp;
+            left++;
+            right--;
+        }
+    }
 }
