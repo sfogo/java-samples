@@ -1,18 +1,14 @@
 package com.vnet.problems;
 
-import com.vnet.common.Fibonacci;
 import org.apache.commons.lang3.tuple.Pair;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 
 public class LeetMiscSolutionsTest {
-    final Fibonacci fibonacci = new Fibonacci(true);
-    final Random random = new Random(System.currentTimeMillis());
-    final LeetMiscSolutions solution = new LeetMiscSolutions();
+    private final Random random = new Random(System.currentTimeMillis());
+    private final LeetMiscSolutions solution = new LeetMiscSolutions();
 
     @Test
     public void testToNodeList() {
@@ -289,5 +285,19 @@ public class LeetMiscSolutionsTest {
         Assert.assertEquals(node.next.value, 3);
         Assert.assertEquals(node.next.next.value, 2);
         Assert.assertNull(node.next.next.next);
+    }
+
+    @Test
+    public void testCountDistinctValues() {
+        // Sorted Array
+        final int[] values = {0,0,1,1,1,2,2,3,3,4};
+        Assert.assertEquals(solution.removeDuplicates(values), 5);
+        Assert.assertEquals(values[0], 0);
+        Assert.assertEquals(values[1], 1);
+        Assert.assertEquals(values[2], 2);
+        Assert.assertEquals(values[3], 3);
+        Assert.assertEquals(values[4], 4);
+
+        Assert.assertEquals(solution.removeDuplicates(new int[] {1}), 1);
     }
 }
