@@ -25,7 +25,7 @@ Here is a possible [solution](problems/src/main/java/com/vnet/problems/BlockLett
 but see [here](docs/STAIRS.md) why no code is required and why this is [Fibonacci](https://en.wikipedia.org/wiki/Fibonacci_number).
 - Best Buy/Sell operation ([code](problems/src/main/java/com/vnet/problems/BestBuySell.java), [tests](problems/src/test/java/com/vnet/problems/BestBuySellTest.java))
 - Move all zeros (or any given value) to end of an array ([code](problems/src/main/java/com/vnet/problems/ArrayMover.java) and [tests](problems/src/test/java/com/vnet/problems/ArrayMoverTest.java))
-- Next Greater number with same digits (([code](problems/src/main/java/com/vnet/problems/NextGreater.java), [tests](problems/src/test/java/com/vnet/problems/NextGreaterTest.java)))
+- Next Greater number with same digits ([code](problems/src/main/java/com/vnet/problems/NextGreater.java), [tests](problems/src/test/java/com/vnet/problems/NextGreaterTest.java))
 - Leet things
   - Linked List ([code](problems/src/main/java/com/vnet/problems/LeetLinkedList.java), [tests](problems/src/test/java/com/vnet/problems/LeetLinkedListTest.java))
   - Binary Tree ([code](problems/src/main/java/com/vnet/problems/LeetTree.java), [tests](problems/src/test/java/com/vnet/problems/LeetTreeTest.java))
