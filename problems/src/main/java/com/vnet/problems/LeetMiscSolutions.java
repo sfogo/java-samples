@@ -720,4 +720,66 @@ public class LeetMiscSolutions {
             right--;
         }
     }
+
+    /**
+     * https://leetcode.com/problems/add-two-numbers/
+     * @param l1 list one
+     * @param l2 list two
+     * @return list
+     */
+    public ListNode addTwoNumbersAsLists(ListNode l1, ListNode l2) {
+        if (l1 == null) {
+            return l2;
+        }
+        if (l2 == null) {
+            return l1;
+        }
+
+        ListNode result = null;
+        ListNode tail = null;
+        int carry = 0;
+
+        while (l1 != null && l2 != null) {
+            final int sum = l1.value + l2.value + carry;
+            final ListNode newNode = new ListNode(sum % 10);
+            if (result == null) {
+                result = newNode;
+            } else {
+                tail.next = newNode;
+            }
+            tail = newNode;
+            carry = sum / 10;
+            l1 = l1.next;
+            l2 = l2.next;
+        }
+
+        // will enter at most one of the two loops
+        // when num1 and num2 lengths differ
+
+        while (l1 != null) {
+            final int sum = l1.value + carry;
+            final ListNode newNode = new ListNode(sum % 10);
+            tail.next = newNode;
+            tail = newNode;
+            carry = sum / 10;
+            l1 = l1.next;
+        }
+
+        while (l2 != null) {
+            final int sum = l2.value + carry;
+            final ListNode newNode = new ListNode(sum % 10);
+            tail.next = newNode;
+            tail = newNode;
+            carry = sum / 10;
+            l2 = l2.next;
+        }
+
+        if (carry > 0) {
+            final ListNode newNode = new ListNode(carry);
+            tail.next = newNode;
+            tail = newNode;
+        }
+
+        return result;
+    }
 }

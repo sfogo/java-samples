@@ -31,7 +31,6 @@ but see [here](docs/STAIRS.md) why no code is required and why this is [Fibonacc
   - Binary Tree ([code](problems/src/main/java/com/vnet/problems/LeetTree.java), [tests](problems/src/test/java/com/vnet/problems/LeetTreeTest.java))
   - Min Stack ([code](problems/src/main/java/com/vnet/problems/LeetMinStack.java), [tests](problems/src/test/java/com/vnet/problems/LeetMinStackTest.java))
   - Miscellaneous ([code](problems/src/main/java/com/vnet/problems/LeetMiscSolutions.java), [tests](problems/src/test/java/com/vnet/problems/LeetMiscSolutionsTest.java)).
-    - Add 2 numbers given as lists of digits
     - Longest substring without repeating characters
     - Two array values whose sum is a given number,
     - Generate parenthesis
@@ -45,3 +44,4 @@ but see [here](docs/STAIRS.md) why no code is required and why this is [Fibonacc
     - Remove duplicates from sorted array
     - Number is palindrome
     - Next permutation
+    - Add 2 numbers given as lists of digits

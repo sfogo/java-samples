@@ -350,4 +350,51 @@ public class LeetMiscSolutionsTest {
         Assert.assertEquals(values[2], 3);
         Assert.assertEquals(values[3], 4);
     }
+
+    @Test
+    public void testAddNumbersAsLists() {
+        final ListNode node = solution.addTwoNumbersAsLists(
+                new ListNode(1, new ListNode(8)),
+                new ListNode(0));
+        Assert.assertEquals(node.value, 1);
+        Assert.assertEquals(node.next.value, 8);
+
+    }
+
+    @Test
+    public void testAddNumbersAsLists2() {
+        final ListNode node = solution.addTwoNumbersAsLists(
+                new ListNode(2, new ListNode(4, new ListNode(3))),
+                new ListNode(5, new ListNode(6, new ListNode(4))));
+        Assert.assertEquals(node.value, 7);
+        Assert.assertEquals(node.next.value, 0);
+        Assert.assertEquals(node.next.next.value, 8);
+    }
+
+    @Test
+    public void testAddNumbersAsLists3() {
+        ListNode node = solution.addTwoNumbersAsLists(
+                new ListNode(9),
+                new ListNode(1,
+                        new ListNode(9,
+                                new ListNode(9,
+                                        new ListNode(9,
+                                                new ListNode(9,
+                                                        new ListNode(9,
+                                                                new ListNode(9,
+                                                                        new ListNode(9,
+                                                                                new ListNode(9, new ListNode(9)))))))))));
+
+        int count = 0;
+        while (node != null) {
+            count++;
+            if (node.next == null) {
+                Assert.assertEquals(node.value, 1);
+            } else {
+                Assert.assertEquals(node.value, 0);
+            }
+            node = node.next;
+        }
+        Assert.assertEquals(count, 11);
+    }
 }
