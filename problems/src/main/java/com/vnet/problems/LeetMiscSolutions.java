@@ -629,8 +629,9 @@ public class LeetMiscSolutions {
     }
 
     /**
-     * count number of distinct values
-     * @param nums sorted array
+     * Remove duplicates : count number of distinct values
+     * AND modify inout array to contain distinct sorted values at its beginning
+     * @param nums SORTED array
      * @return count
      */
     public int removeDuplicates(int[] nums) {
