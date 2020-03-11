@@ -18,6 +18,11 @@ public class NextGreaterTest {
         nextGreater.get(54321);
     }
 
+    @Test(expectedExceptions = VException.class)
+    public void testSingleDigit() {
+        nextGreater.get(9);
+    }
+
     @Test
     public void testTwo() {
         Assert.assertEquals(nextGreater.get(1234), 1243);
