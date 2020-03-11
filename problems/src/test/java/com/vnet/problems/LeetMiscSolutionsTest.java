@@ -288,7 +288,7 @@ public class LeetMiscSolutionsTest {
     }
 
     @Test
-    public void testCountDistinctValues() {
+    public void testRemoveDuplicatesFromSortedArray() {
         // Sorted Array
         final int[] values = {0,0,1,1,1,2,2,3,3,4};
         Assert.assertEquals(solution.removeDuplicates(values), 5);
@@ -299,5 +299,11 @@ public class LeetMiscSolutionsTest {
         Assert.assertEquals(values[4], 4);
 
         Assert.assertEquals(solution.removeDuplicates(new int[] {1}), 1);
+    }
+
+    @Test
+    public void testIsPalindrome() {
+        Assert.assertFalse(solution.isPalindrome(347));
+        Assert.assertTrue(solution.isPalindrome(1221));
     }
 }

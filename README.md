@@ -42,3 +42,4 @@ but see [here](docs/STAIRS.md) why no code is required and why this is [Fibonacc
     - Is anagram
     - Odd-event list
     - Remove duplicates from sorted array
+    - Number is palindrome
