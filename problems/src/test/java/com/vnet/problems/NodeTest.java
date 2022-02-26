@@ -89,7 +89,7 @@ public class NodeTest {
     }
 
     @Test
-    public void testTreeTwoHeightbyDepth() {
+    public void testTreeTwoHeightByDepth() {
         Assert.assertEquals(createTreeTwo().heightByDepth(), 6);
     }
 
