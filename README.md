@@ -45,3 +45,9 @@ but see [here](docs/STAIRS.md) why no code is required and why this is [Fibonacc
     - Number is palindrome
     - Next permutation
     - Add 2 numbers given as lists of digits
+
+## How to run tests
+Tests are located [here](problems/src/test/java/com/vnet/problems)
+```
+./gradlew problems:test --tests NodeTest
+```
